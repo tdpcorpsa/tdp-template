@@ -15,21 +15,24 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
 ## Instalación
 
 1. **Clonar el template:**
+
    ```bash
-   git clone https://github.com/tdpcorp/tpd-template.git <nombre-proyecto>
+   git clone https://github.com/tdpcorp/tdp-template.git <nombre-proyecto>
    ```
 
 2. **Navegar al directorio del proyecto:**
+
    ```bash
    cd <nombre-proyecto>
    ```
 
 3. **Eliminar el historial de git existente e inicializar uno nuevo:**
+
    ```bash
    # En Windows (PowerShell/CMD)
    rmdir /s /q .git
    git init
-   
+
    # En Unix/Mac/Linux
    rm -rf .git
    git init
@@ -41,7 +44,7 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
    pnpm install
    ```
 
-3. Configurar `.env.local`:
+5. Configurar `.env.local`:
    ```env
    NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
