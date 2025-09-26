@@ -14,26 +14,34 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
 
 ## Instalación
 
-1. Crear proyecto Next.js:
-
+1. **Clonar el template:**
    ```bash
-   npx create-next-app@latest
-   cd <tu-proyecto>
+   git clone https://github.com/tdpcorp/tpd-template.git <nombre-proyecto>
    ```
 
-2. Agregar plantilla:
-
+2. **Navegar al directorio del proyecto:**
    ```bash
-   pnpm dlx shadcn@latest add https://github.com/tdpcorp/tpd-template
+   cd <nombre-proyecto>
    ```
 
-3. Instalar dependencias:
+3. **Eliminar el historial de git existente e inicializar uno nuevo:**
+   ```bash
+   # En Windows (PowerShell/CMD)
+   rmdir /s /q .git
+   git init
+   
+   # En Unix/Mac/Linux
+   rm -rf .git
+   git init
+   ```
+
+4. **Instalar dependencias:**
 
    ```bash
    pnpm install
    ```
 
-4. Configurar `.env.local`:
+3. Configurar `.env.local`:
    ```env
    NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
