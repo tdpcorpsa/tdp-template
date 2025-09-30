@@ -1,10 +1,20 @@
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, CookieOptions } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
+
+const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN ? `.${process.env.NEXT_PUBLIC_DOMAIN}` : undefined;
 
 export async function updateSession(request: NextRequest, headers?: Headers) {
   let supabaseResponse = NextResponse.next({
     request,
     headers,
+  });
+
+  supabaseResponse.cookies.set("__test_domain", "ok", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production", // en dev HTTP => false
+    ...(COOKIE_DOMAIN ? { domain: COOKIE_DOMAIN } : {}),
+    path: "/",
   });
 
   const supabase = createServerClient(
@@ -22,9 +32,20 @@ export async function updateSession(request: NextRequest, headers?: Headers) {
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
+          cookiesToSet.forEach(({ name, value, options }) => {
+            const safe: CookieOptions = {
+              ...options,
+              ...(COOKIE_DOMAIN ? { domain: COOKIE_DOMAIN } : {}),
+              secure:
+                options?.secure ??
+                (process.env.NODE_ENV === "production" ? true : false),
+              httpOnly: options?.httpOnly ?? true,
+              sameSite:
+                (options?.sameSite as CookieOptions["sameSite"]) ?? "lax",
+              path: options?.path ?? "/",
+            };
+            supabaseResponse.cookies.set(name, value, safe);
+          });
         },
       },
     }

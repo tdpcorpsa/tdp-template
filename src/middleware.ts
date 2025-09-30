@@ -1,11 +1,19 @@
 import { updateSession } from "@/lib/supabase/middleware";
 import { type NextRequest } from "next/server";
 
+function requestOrigin(req: NextRequest) {
+  const xfProto = req.headers.get("x-forwarded-proto");
+  const xfHost = req.headers.get("x-forwarded-host");
+  const host = req.headers.get("host");
+  const proto = xfProto ?? req.nextUrl.protocol.replace(":", "") ?? "http";
+  return `${proto}://${xfHost ?? host}${req.nextUrl.search}`;
+}
+
 export async function middleware(request: NextRequest) {
   // Update session and refresh tokens
-  const href = request.nextUrl.href;
   const headers = new Headers();
-  headers.append("x-full-path", href);
+  const currentUlr = requestOrigin(request);
+  headers.append("x-current-url", currentUlr);
   const { supabaseResponse } = await updateSession(request, headers);
   return supabaseResponse;
 }

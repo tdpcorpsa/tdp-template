@@ -12,18 +12,19 @@ export default async function AuthLayout({
 }>) {
   const supabase = await createClient();
   const headerList = await headers();
-  const currentPath = headerList.get("x-full-path") || "/";
+  const currentUrl = headerList.get("x-current-url") || "/";
+  console.log("x-current-url", currentUrl);
   const { data } = await supabase.auth.getSession();
   // redirect to login
   // when is production redirect to NEXT_PUBLIC_LOGIN
   // when is development redirect to /dev-login
   if (!data.session && isProd) {
     return redirect(
-      `${NEXT_PUBLIC_LOGIN}?next=${encodeURIComponent(currentPath)}`
+      `${NEXT_PUBLIC_LOGIN}?next=${encodeURIComponent(currentUrl)}`
     );
   }
   if (!data.session && !isProd) {
-    return redirect(`/dev-login?next=${encodeURIComponent(currentPath)}`);
+    return redirect(`/dev-login?next=${encodeURIComponent(currentUrl)}`);
   }
 
   return <>{children}</>;

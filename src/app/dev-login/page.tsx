@@ -1,4 +1,5 @@
 "use client";
+
 import { useMutation } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertTriangle } from "lucide-react";
+import { toast } from "sonner";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginSchema = z.object({
   email: z.email("Por favor, ingresa un correo electrónico válido"),
@@ -26,6 +29,8 @@ type LoginFormData = z.infer<typeof LoginSchema>;
 
 export default function DevLoginPage() {
   const supabase = createClient();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { mutate } = useMutation({
     mutationFn: async (data: LoginFormData) => {
       const { error } = await supabase.auth.signInWithPassword(data);
@@ -33,6 +38,14 @@ export default function DevLoginPage() {
         throw error;
       }
       return { success: true };
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: () => {
+      toast.success("Inicio de sesión exitoso");
+      const next = searchParams.get("next") || "/";
+      router.push(next);
     },
   });
 
@@ -57,6 +70,7 @@ export default function DevLoginPage() {
         <h1 className="text-2xl font-semibold text-center mb-6">Dev Login</h1>
         <Form {...form}>
           <form
+            method="POST"
             onSubmit={form.handleSubmit((data) => mutate(data))}
             className="space-y-4"
           >
