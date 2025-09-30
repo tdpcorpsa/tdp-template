@@ -13,29 +13,29 @@ pnpm run typecheck
 
 ```
 src/
-  app/
-    (auth)/ # todas las rutas que requieren autenticación, pero son independientes de tenant
-        ...
-      layout.tsx
-      page.tsx
-  components/
-    <feature>
-      <feature>-form.tsx # Dentro de form solo debe de tener los field necesarios para el formulario, no la logica del formulario.
-      <feature>-list.tsx
-      <feature>-<edit/create>.tsx
-      <feature>-delete.tsx  # debe de usar ui/alert-confirmation
-      <feature>-actions.tsx
-      <feature>-create-button.tsx
-      <feature>-select.tsx # solo cuando se necesita
-    ui/ # componentes reutilizables no deben de ser modificados salvo escepciones.
-  lib/
-  types/
-    supabase.types.ts # tipos de supabase
-  schemas/
-    <feature>.schema.ts # esquema de la tabla
-  hooks/ # hooks reutilizables
-    <feature>/
-        use-<feature>-<action>.ts
+├── app/
+│   ├── (auth)/ # todas las rutas que requieren autenticación, pero son independientes de tenant
+│   │   └── ...
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── <feature>/
+│   │   ├── <feature>-form.tsx # Dentro de form solo debe de tener los field necesarios para el formulario, no la logica del formulario.
+│   │   ├── <feature>-list.tsx
+│   │   ├── <feature>-<edit/create>.tsx
+│   │   ├── <feature>-delete.tsx  # debe de usar ui/alert-confirmation
+│   │   ├── <feature>-actions.tsx
+│   │   ├── <feature>-create-button.tsx
+│   │   └── <feature>-select.tsx # solo cuando se necesita
+│   └── ui/ # componentes reutilizables no deben de ser modificados salvo escepciones.
+├── lib/
+├── types/
+│   └── supabase.types.ts # tipos de supabase
+├── schemas/
+│   └── <feature>.schema.ts # esquema de la tabla
+└── hooks/ # hooks reutilizables
+    └── <feature>/
+        └── use-<feature>-<action>.ts
 ```
 
 ## Auth

@@ -86,102 +86,50 @@ pnpm format     # Formatear código con Prettier
 
 ```
 src/
-  components/
-    <feature>/                    # Cada feature en su propia carpeta
-      <feature>-form.tsx         # Solo campos del formulario
-      <feature>-list.tsx         # Listado/tabla de elementos
-      <feature>-create.tsx       # Formulario de creación
-      <feature>-edit.tsx         # Formulario de edición
-      <feature>-delete.tsx       # Confirmación de eliminación
-      <feature>-actions.tsx      # Acciones/botones
-      <feature>-create-button.tsx
-      <feature>-select.tsx       # Solo cuando se necesita
+├── components/
+│   └── <feature>/
+│       ├── <feature>-form.tsx
+│       ├── <feature>-list.tsx
+│       ├── <feature>-create.tsx
+│       ├── <feature>-edit.tsx
+│       ├── <feature>-delete.tsx
+│       └── <feature>-actions.tsx
 ```
 
 ### Hooks y Lógica de Negocio
 
 ```
 src/
-  hooks/
-    <feature>/
-      use-<feature>-<action>.ts  # ej: use-users-create.ts
+├── hooks/
+│   └── <feature>/
+│       ├── use-<feature>-create.ts
+│       ├── use-<feature>-update.ts
+│       ├── use-<feature>-delete.ts
+│       └── use-<feature>-list.ts
 ```
 
 ### Esquemas y Tipos
 
 ```
 src/
-  schemas/
-    <feature>.schema.ts        # Validaciones con Zod
-  types/
-    supabase.types.ts         # Tipos generados de Supabase
-    auth.ts                   # Tipos de autenticación
+├── schemas/
+│   └── <feature>.schema.ts
+└── types/
+    ├── supabase.types.ts
+    └── <feature>.types.ts
 ```
 
 ### Rutas y Páginas
 
 ```
 src/
-  app/
-    (auth)/                   # Rutas que requieren autenticación
-      <feature>/
-        page.tsx
-        layout.tsx
-    public/                   # Rutas públicas
+└── app/
+    └── (auth)/
+        └── <feature>/
+            ├── page.tsx
+            ├── create/
+            │   └── page.tsx
+            └── [id]/
+                └── edit/
+                    └── page.tsx
 ```
-
-## 📋 Guías de Modificación
-
-### ❌ Archivos que NO se deben modificar
-
-- **`src/components/ui/`**: Componentes de shadcn/ui (salvo excepciones justificadas)
-- **`src/lib/utils.ts`**: Utilidades base del template
-
-### ✅ Patrones Obligatorios
-
-#### Formularios
-
-- **Validación**: Usar `react-hook-form` + `zod`
-- **Esquemas**: Definir en `schemas/<feature>.schema.ts`
-
-```typescript
-// Ejemplo de validación
-z.email("Formato de email inválido"); // Email requerido
-z.email("Formato de email inválido").optional().or(z.literal("")); // Email opcional
-z.nonempty("El campo es requerido"); // Campo requerido
-```
-
-#### Eliminación de Registros
-
-- **Obligatorio**: Usar `ui/alert-confirmation`
-- **Confirmación**: Solicitar palabra de confirmación
-
-#### Consultas de Datos
-
-- **Obligatorio**: Usar React Query en hooks `use-<feature>-<action>.ts`
-- **Patrón**: Separar lógica de presentación
-
-#### Tablas y Listados
-
-- **Obligatorio**: Usar React Table para tablas complejas
-- **Componente**: Crear `<feature>-list.tsx`
-
-### 🎨 Demos de Componentes
-
-- **Ubicación**: `/app/demo`
-- **Propósito**: Solo para componentes reutilizables de `../ui`
-- **Restricción**: Features específicas NO van en demo
-
-### 🛠️ Herramientas de Calidad
-
-```bash
-pnpm format     # Formatear código (obligatorio antes de commit)
-pnpm typecheck  # Verificar tipos TypeScript
-pnpm lint       # Verificar reglas de ESLint
-```
-
-### 🏗️ Estados Globales
-
-- **Herramienta**: Zustand
-- **Uso**: Solo cuando sea estrictamente necesario
-- **Patrón**: Preferir estados locales cuando sea posible
