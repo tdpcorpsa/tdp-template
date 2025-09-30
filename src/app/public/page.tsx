@@ -11,5 +11,5 @@ export default function PublicPage() {
         </p>
       </div>
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { createBrowserClient } from "@supabase/ssr";
+import { createBrowserClient } from '@supabase/ssr'
 
 const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
   ? `.${process.env.NEXT_PUBLIC_DOMAIN}`
-  : undefined;
+  : undefined
 
 export function createClient() {
   return createBrowserClient(
@@ -11,14 +11,14 @@ export function createClient() {
     {
       cookieOptions: {
         domain: COOKIE_DOMAIN,
-        path: "/",
+        path: '/',
         // secure: true sólo en HTTPS; en dev con http => false
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
       },
     }
-  );
+  )
 }
 
 // Export a singleton instance for convenience
-export const supabase = createClient();
+export const supabase = createClient()

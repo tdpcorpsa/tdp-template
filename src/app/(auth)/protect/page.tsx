@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import useLogout from "@/hooks/use-logout";
+import { Button } from '@/components/ui/button'
+import useLogout from '@/hooks/use-logout'
 
 // This is only an example page
 export default function ProtectedPage() {
-  const { mutate } = useLogout();
+  const { mutate } = useLogout()
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -23,5 +23,5 @@ export default function ProtectedPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

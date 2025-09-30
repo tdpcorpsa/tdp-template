@@ -1,24 +1,24 @@
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 
-const loginUrl = process.env.NEXT_PUBLIC_LOGIN || "/dev-login";
+const loginUrl = process.env.NEXT_PUBLIC_LOGIN || '/dev-login'
 
 export default async function AuthLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const supabase = await createClient();
-  const headerList = await headers();
-  const currentUrl = headerList.get("x-current-url") || "/";
-  const { data } = await supabase.auth.getSession();
+  const supabase = await createClient()
+  const headerList = await headers()
+  const currentUrl = headerList.get('x-current-url') || '/'
+  const { data } = await supabase.auth.getSession()
   // redirect to login
   // when is production redirect to NEXT_PUBLIC_LOGIN
   // when is development redirect to /dev-login
   if (!data.session) {
-    return redirect(`${loginUrl}?next=${encodeURIComponent(currentUrl)}`);
+    return redirect(`${loginUrl}?next=${encodeURIComponent(currentUrl)}`)
   }
 
-  return <>{children}</>;
+  return <>{children}</>
 }

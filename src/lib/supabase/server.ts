@@ -1,10 +1,12 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 
-const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN ? `.${process.env.NEXT_PUBLIC_DOMAIN}` : undefined;
+const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
+  ? `.${process.env.NEXT_PUBLIC_DOMAIN}`
+  : undefined
 
 export async function createClient() {
-  const cookieStore = await cookies();
+  const cookieStore = await cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,7 +14,7 @@ export async function createClient() {
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll();
+          return cookieStore.getAll()
         },
         setAll(cookiesToSet) {
           try {
@@ -22,14 +24,14 @@ export async function createClient() {
                 ...(COOKIE_DOMAIN ? { domain: COOKIE_DOMAIN } : {}),
                 secure:
                   options?.secure ??
-                  (process.env.NODE_ENV === "production" ? true : false),
+                  (process.env.NODE_ENV === 'production' ? true : false),
                 httpOnly: options?.httpOnly ?? true,
                 sameSite:
-                  (options?.sameSite as CookieOptions["sameSite"]) ?? "lax",
-                path: options?.path ?? "/", // <- importante
-              };
-              cookieStore.set(name, value, safeOpts);
-            });
+                  (options?.sameSite as CookieOptions['sameSite']) ?? 'lax',
+                path: options?.path ?? '/', // <- importante
+              }
+              cookieStore.set(name, value, safeOpts)
+            })
           } catch {
             // The `setAll` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
@@ -38,5 +40,5 @@ export async function createClient() {
         },
       },
     }
-  );
+  )
 }

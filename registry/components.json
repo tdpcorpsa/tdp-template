@@ -60,10 +60,7 @@
   "input": {
     "name": "input",
     "description": "Componente de input con estilos personalizados",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge"
-    ],
+    "dependencies": ["clsx", "tailwind-merge"],
     "devDependencies": [],
     "registryDependencies": [],
     "files": [
@@ -96,10 +93,7 @@
   "sonner": {
     "name": "sonner",
     "description": "Componente de toast/notificaciones usando Sonner",
-    "dependencies": [
-      "sonner",
-      "next-themes"
-    ],
+    "dependencies": ["sonner", "next-themes"],
     "devDependencies": [],
     "registryDependencies": [],
     "files": [
