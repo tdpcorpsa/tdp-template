@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase/client";
 
 // This is only an example page
 export default function ProtectedPage() {
@@ -17,7 +16,7 @@ export default function ProtectedPage() {
           páginas protegidas.
         </p>
         <div className="pt-4">
-          <Button onClick={() => supabase.auth.signOut()}>Cerrar sesión</Button>
+          <Button>Cerrar sesión</Button>
         </div>
       </div>
     </div>
