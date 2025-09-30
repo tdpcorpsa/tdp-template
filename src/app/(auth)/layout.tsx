@@ -13,7 +13,6 @@ export default async function AuthLayout({
   const supabase = await createClient();
   const headerList = await headers();
   const currentUrl = headerList.get("x-current-url") || "/";
-  console.log("x-current-url", currentUrl);
   const { data } = await supabase.auth.getSession();
   // redirect to login
   // when is production redirect to NEXT_PUBLIC_LOGIN

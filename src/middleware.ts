@@ -6,7 +6,9 @@ function requestOrigin(req: NextRequest) {
   const xfHost = req.headers.get("x-forwarded-host");
   const host = req.headers.get("host");
   const proto = xfProto ?? req.nextUrl.protocol.replace(":", "") ?? "http";
-  return `${proto}://${xfHost ?? host}${req.nextUrl.search}`;
+  const pathname = req.nextUrl.pathname;
+  const search = req.nextUrl.search;
+  return `${proto}://${xfHost ?? host}${pathname}${search}`;
 }
 
 export async function middleware(request: NextRequest) {
