@@ -17,7 +17,7 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
 1. **Clonar el template:**
 
    ```bash
-   git clone https://github.com/tdpcorp/tdp-template.git <nombre-proyecto>
+   git clone https://github.com/tdpcorpsa/tdp-template.git <nombre-proyecto>
    ```
 
 2. **Navegar al directorio del proyecto:**
