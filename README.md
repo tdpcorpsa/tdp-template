@@ -30,7 +30,7 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
 
    ```bash
    # En Windows (PowerShell/CMD)
-   rmdir /s /q .git
+   rm -force -R .git
    git init
 
    # En Unix/Mac/Linux
