@@ -4,8 +4,6 @@ const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
   ? `.${process.env.NEXT_PUBLIC_DOMAIN}`
   : undefined;
 
-console.log("COOKIE_DOMAIN", COOKIE_DOMAIN);
-
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
