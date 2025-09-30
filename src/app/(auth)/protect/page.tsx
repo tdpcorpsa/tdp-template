@@ -1,9 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import useLogout from "@/hooks/use-logout";
 
 // This is only an example page
 export default function ProtectedPage() {
+  const { mutate } = useLogout();
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md text-center">
@@ -16,7 +19,7 @@ export default function ProtectedPage() {
           páginas protegidas.
         </p>
         <div className="pt-4">
-          <Button>Cerrar sesión</Button>
+          <Button onClick={() => mutate()}>Cerrar sesión</Button>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN || "/dev-login";
 
@@ -17,7 +18,11 @@ export default function useLogout() {
       }
     },
     onSuccess: () => {
+      toast.success("Sesión cerrada exitosamente");
       router.push(loginUrl);
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 
