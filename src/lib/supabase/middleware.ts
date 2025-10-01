@@ -23,6 +23,9 @@ export async function updateSession(request: NextRequest, headers?: Headers) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: {
+        domain: COOKIE_DOMAIN,
+      },
       cookies: {
         getAll() {
           return request.cookies.getAll()

@@ -12,6 +12,9 @@ export async function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: {
+        domain: COOKIE_DOMAIN,
+      },
       cookies: {
         getAll() {
           return cookieStore.getAll()
