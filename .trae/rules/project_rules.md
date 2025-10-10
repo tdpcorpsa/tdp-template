@@ -32,7 +32,7 @@ src/
 ├── types/
 │   └── supabase.types.ts # tipos de supabase
 ├── schemas/
-│   └── <feature>.schema.ts # esquema de la tabla
+│   └── <feature>.schema.ts # esquema de la forms
 └── hooks/ # hooks reutilizables
     └── <feature>/
         └── use-<feature>-<action>.ts
@@ -48,7 +48,7 @@ Para el sistema de autenticación se usara supabase auth
 
 Para la base de datos se usara supabase
 
-- los tipos de supabase estaran en `types/supabase.ts`
+- los tipos de supabase estaran en `types/supabase.types.ts`
 
 ## fetch
 
@@ -88,4 +88,4 @@ z.nonempty('El campo es requerido') // para validar que no este vacio
 ## Componentes
 
 - Cuando se crea un componente reutilizable, se debe de agregar la forma de uso en `/app/demo`, solo y unicamente de los componentes reutilizables que esten dentro de `../ui`
-- las features no deben de estar dentro de `demo`, se debe de solicitar el permiso para agregarla.
+- las features no deben de estar dentro de `demo`.
