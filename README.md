@@ -49,6 +49,7 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
    NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
    SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+   NEXT_PUBLIC_DOMAIN=tu_dominio
    ```
 
 ## Comandos
