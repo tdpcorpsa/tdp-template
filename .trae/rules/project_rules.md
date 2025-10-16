@@ -29,7 +29,7 @@ src/
 │   │   └── <feature>-select.tsx # solo cuando se necesita
 │   └── ui/ # componentes reutilizables no deben de ser modificados salvo escepciones.
 ├── lib/
-├── types/
+├── types/ # Siempre usar los tipos de supabase
 │   └── supabase.types.ts # tipos de supabase
 ├── schemas/
 │   └── <feature>.schema.ts # esquema de la forms
@@ -49,6 +49,17 @@ Para el sistema de autenticación se usara supabase auth
 Para la base de datos se usara supabase
 
 - los tipos de supabase estaran en `types/supabase.types.ts`
+
+**types**
+
+- Siempre usar los tipos de supabase
+
+```typescript
+// esquema public
+type<Feature> = Tables<'features'>
+// otro esquema
+type<Feature> = Tables<{ schema: 'auth' }, 'users'>
+```
 
 ## fetch
 

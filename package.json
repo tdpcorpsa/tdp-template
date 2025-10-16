@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write --list-different ."
+    "format": "prettier --write --list-different .",
+    "supabase:gen": "supabase gen types typescript --project-id abcdefghijklmnopqrst > database.types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
