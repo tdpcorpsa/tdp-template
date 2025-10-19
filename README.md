@@ -44,13 +44,28 @@ Plantilla oficial de TDP Corp que implementa estándares corporativos de desarro
    pnpm install
    ```
 
-5. Configurar `.env.local`:
+5. **Configurar variables de entorno:**
+
+   Copia el archivo de ejemplo y configura las variables:
+
+   ```bash
+   cp env.example .env.local
+   ```
+
+   Luego edita `.env.local` con tus valores reales:
+
    ```env
+   # Supabase Configuration
    NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
    SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+
    NEXT_PUBLIC_DOMAIN=tu_dominio
+   # Auth Configuration
+   NEXT_PUBLIC_LOGIN=tu_configuracion_login
    ```
+
+   > **Nota**: Puedes encontrar las credenciales de Supabase en tu dashboard del proyecto bajo Settings > API
 
 ## Comandos
 
