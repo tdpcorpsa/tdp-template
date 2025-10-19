@@ -1,3 +1,4 @@
+import { Database } from '@/types/database.types'
 import { createBrowserClient } from '@supabase/ssr'
 
 const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
@@ -5,7 +6,7 @@ const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
   : undefined
 
 export function createClient() {
-  return createBrowserClient(
+  return createBrowserClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
