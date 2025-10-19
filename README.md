@@ -132,7 +132,6 @@ src/
 │   └── <feature>.schema.ts
 └── types/
     ├── supabase.types.ts
-    └── <feature>.types.ts
 ```
 
 ### Rutas y Páginas

@@ -52,7 +52,7 @@ Para la base de datos se usara supabase
 
 **types**
 
-- Siempre usar los tipos de supabase
+- Siempre usar los tipos de supabase, no crear tipos extra para las tablas.
 
 ```typescript
 // esquema public

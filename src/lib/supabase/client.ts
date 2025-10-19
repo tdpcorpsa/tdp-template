@@ -1,4 +1,4 @@
-import { Database } from '@/types/database.types'
+import { Database } from '@/types/supabase.types'
 import { createBrowserClient } from '@supabase/ssr'
 
 const COOKIE_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN
