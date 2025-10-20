@@ -88,12 +88,82 @@ Para las consultas y mutaciones de la base de datos se debe de usar react-query 
 - Para los formularios se usara `react-hook-form`
 - Para la validación se usara `zod`
 
-**correcto**
+**Correcto**
 
 ```typescript
 z.email('Formato de email inválido') // para validar correo electronico  y que no este vacio
-z.email('Formato de email inválido')..optional().or(z.literal("")) // para validar correo electronico y que pueda estar vacio
+z.email('Formato de email inválido').optional().or(z.literal('')) // para validar correo electronico y que pueda estar vacio
 z.nonempty('El campo es requerido') // para validar que no este vacio
+```
+
+**Incorrecto**
+
+```typescript
+z.string().email('Formato de email inválido') // para validar correo electronico  y que no este vacio
+```
+
+- `<feature>-form.tsx` debe de tener solo los campos necesarios para el formulario, no la logica del formulario.
+
+**correcto**
+
+```typescript
+export function FeatureForm() {
+  // context
+  const { form } = useFormContext();
+  // watcher para validar el campo username
+  const username = form.watch('username');
+  useEffect(() => {
+    // en caso se requiera
+  }, [username]);
+  return (
+    <div>
+      <Field>
+        <FieldLabel htmlFor="date_of_birth">Fecha de Nacimiento</FieldLabel>
+        <FieldContent>
+          <Input
+            id="date_of_birth"
+            type="date"
+            {...control.register('date_of_birth')}
+          />
+          <FieldError errors={[errors.date_of_birth]} />
+        </FieldContent>
+      </Field>
+    </div>
+  );
+}
+```
+
+**Incorrecto**
+
+```typescript
+export function FeatureForm() {
+  // esto debe de ir a la acción como <feature>-<create/edit>
+  const form = useForm<FeatureSchema>({
+    resolver: zodResolver(FeatureSchema),
+  });
+  return (
+    <Form {...form}> // esto debe de ir a la acción como <feature>-<create/edit>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8"> // esto debe de ir a la acción como <feature>-<create/edit>
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
+  );
+}
 ```
 
 ## Componentes
