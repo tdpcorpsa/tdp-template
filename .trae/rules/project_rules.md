@@ -23,7 +23,7 @@ src/
 │   │   ├── <feature>-form.tsx # Dentro de form solo debe de tener los field necesarios para el formulario, no la logica del formulario.
 │   │   ├── <feature>-list.tsx
 │   │   ├── <feature>-<edit/create>.tsx
-│   │   ├── <feature>-delete.tsx  # debe de usar ui/alert-confirmation
+│   │   ├── <feature>-delete.tsx  # debe de usar ui/confirm-alert
 │   │   ├── <feature>-actions.tsx
 │   │   ├── <feature>-create-button.tsx
 │   │   └── <feature>-select.tsx # solo cuando se necesita
@@ -71,7 +71,7 @@ Para las consultas y mutaciones de la base de datos se debe de usar react-query 
 
 ## Delete Form
 
-- Para formularios de eliminación debe de usarse ui/alert-confirmation, y se pedira ingresar una palabra de confirmación
+- Para formularios de eliminación debe de usarse ui/confirm-alert, y se pedira ingresar una palabra de confirmación
 
 ## style
 
