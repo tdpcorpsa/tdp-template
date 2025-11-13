@@ -1,23 +1,16 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { AlertTriangleIcon, ComponentIcon } from 'lucide-react'
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { AlertTriangleIcon, ComponentIcon } from "lucide-react"
 
 export default function DemoPage() {
   const demos = [
     {
-      title: 'Confirm Alert',
-      description:
-        'Componente para confirmaciones de acciones importantes con validación de palabra clave',
-      href: '/demo/confirm-alert',
+      title: "Confirm Alert",
+      description: "Componente para confirmaciones de acciones importantes con validación de palabra clave",
+      href: "/demo/confirm-alert",
       icon: AlertTriangleIcon,
-      status: 'Disponible',
+      status: "Disponible"
     },
     // Aquí se pueden agregar más demos en el futuro
   ]
@@ -27,8 +20,7 @@ export default function DemoPage() {
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Demos de Componentes</h1>
         <p className="text-muted-foreground">
-          Explora los componentes reutilizables disponibles en el template y ve
-          ejemplos de su uso.
+          Explora los componentes reutilizables disponibles en el template y ve ejemplos de su uso.
         </p>
       </div>
 
@@ -53,7 +45,9 @@ export default function DemoPage() {
               <CardContent className="space-y-4">
                 <CardDescription>{demo.description}</CardDescription>
                 <Button asChild className="w-full">
-                  <Link href={demo.href}>Ver Demo</Link>
+                  <Link href={demo.href}>
+                    Ver Demo
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -68,8 +62,8 @@ export default function DemoPage() {
         </div>
         <div className="space-y-2 text-sm text-muted-foreground">
           <p>
-            Los demos están diseñados para mostrar el uso correcto de los
-            componentes reutilizables del template. Cada demo incluye:
+            Los demos están diseñados para mostrar el uso correcto de los componentes reutilizables 
+            del template. Cada demo incluye:
           </p>
           <ul className="list-disc list-inside space-y-1 ml-4">
             <li>Ejemplos de uso básico y avanzado</li>
@@ -78,8 +72,8 @@ export default function DemoPage() {
             <li>Documentación técnica integrada</li>
           </ul>
           <p className="mt-3">
-            Estos componentes siguen las reglas del proyecto y están listos para
-            usar en aplicaciones de producción.
+            Estos componentes siguen las reglas del proyecto y están listos para usar en 
+            aplicaciones de producción.
           </p>
         </div>
       </div>

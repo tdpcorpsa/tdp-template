@@ -1,4 +1,4 @@
-import { Separator } from '@/components/ui/separator'
+import { Separator } from "@/components/ui/separator"
 
 export default function DemoLayout({
   children,
@@ -22,8 +22,10 @@ export default function DemoLayout({
           </div>
         </div>
       </div>
-
-      <main className="container mx-auto py-6">{children}</main>
+      
+      <main className="container mx-auto py-6">
+        {children}
+      </main>
     </div>
   )
 }
