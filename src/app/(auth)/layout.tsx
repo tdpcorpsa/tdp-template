@@ -1,6 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/app-sidebar'
+import ProfileProvider from '@/providers/profile-provider'
 
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN || '/dev-login'
 
@@ -20,5 +23,12 @@ export default async function AuthLayout({
     return redirect(`${loginUrl}?next=${encodeURIComponent(currentUrl)}`)
   }
 
-  return <>{children}</>
+  return (
+    <ProfileProvider>
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="flex-1 overflow-auto">{children}</main>
+      </SidebarProvider>
+    </ProfileProvider>
+  )
 }

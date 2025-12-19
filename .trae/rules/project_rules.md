@@ -9,6 +9,8 @@ pnpm run format
 pnpm run typecheck
 ```
 
+Siempre ejecuta `pnpm typecheck` antes de terminar.
+
 ## Estructura de carpetas
 
 ```
@@ -23,8 +25,8 @@ src/
 │   │   ├── <feature>-form.tsx # Dentro de form solo debe de tener los field necesarios para el formulario, no la logica del formulario.
 │   │   ├── <feature>-list.tsx
 │   │   ├── <feature>-<edit/create>.tsx
-│   │   ├── <feature>-delete.tsx  # debe de usar ui/confirm-alert
-│   │   ├── <feature>-actions.tsx
+│   │   ├── <feature>-delete.tsx  # debe de usar ui/alert-confirmation
+│   │   ├── <feature>-actions.tsx # debe de ser un dropdown con las acciones disponibles
 │   │   ├── <feature>-create-button.tsx
 │   │   └── <feature>-select.tsx # solo cuando se necesita
 │   └── ui/ # componentes reutilizables no deben de ser modificados salvo escepciones.
@@ -52,7 +54,7 @@ Para la base de datos se usara supabase
 
 **types**
 
-- Siempre usar los tipos de supabase, no crear tipos extra para las tablas.
+- Siempre usar los tipos de supabase
 
 ```typescript
 // esquema public
@@ -65,13 +67,43 @@ type<Feature> = Tables<{ schema: 'auth' }, 'users'>
 
 Para las consultas y mutaciones de la base de datos se debe de usar react-query en `use-<feature>-<action>.ts`
 
+```typescript
+// ejemplo de query
+const useFeatureList = ({
+  pagination,
+  search,
+}: {
+  pagination: {
+    page: number
+    pageSize: number
+  }
+  search?: string
+}) => {
+  return useQuery({
+    queryKey: ['features'],
+    queryFn: () => {
+      return {
+        data: [],
+        total: 0,
+        pagination,
+      }
+    },
+  })
+}
+```
+
 ## Table
 
-- Para tablas o listas debe de usarse react-table
+- Para tablas o listas debe de usarse react-table, se mostrara en 3 vistas, de tabla, de lista y de cards.
+  - En la vista de tabla se usara table.tsx
+  - En la vista de lista se usara item.tsx
+  - En la vista de cards se usara card.tsx
+  - para el selector se usara select-view.tsx
+- Busquedas, filtros, ordenamiento y paginación se usaran desde el servidor.
 
 ## Delete Form
 
-- Para formularios de eliminación debe de usarse ui/confirm-alert, y se pedira ingresar una palabra de confirmación
+- Para formularios de eliminación debe de usarse ui/alert-confirmation, y se pedira ingresar una palabra de confirmación
 
 ## style
 
@@ -166,7 +198,18 @@ export function FeatureForm() {
 }
 ```
 
+Las acciones que tienen un formulario com <edit/create> o cualquier otra accion que requiere un formulario dentro de un Drawer `drawer.tsx`
+
 ## Componentes
 
-- Cuando se crea un componente reutilizable, se debe de agregar la forma de uso en `/app/demo`, solo y unicamente de los componentes reutilizables que esten dentro de `../ui`
+- Cuando se crea un componente reutilizable, se debe de agregar la forma de uso en `/app/demo`, solo y unicamente de los componentes reutilizables que esten dentro de `../ui`.
+- los demos deben de enlazarse a la pagina principal de `/app/demo`
 - las features no deben de estar dentro de `demo`.
+
+## Readme
+
+- El readme solo debe de tener un:
+  - resumen: corto de no mas de 5 lineas
+  - las variables de entorno: una lista con todas las variables de entorno
+  - como iniciar: un ejemplo de como iniciar el proyecto
+  - los módulos: una lista con todos los módulos y sus permisos, debe de estar el subdomain:recurso:accion los permisos deben de ser unicamente los declarados en CanAccess
