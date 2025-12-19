@@ -90,9 +90,8 @@ export function PaginationGroup({
   return (
     <ButtonGroup>
       <Button
-        variant="outline"
-        className="px-3"
-        size="icon-sm"
+        variant="link"
+        size="sm"
         onClick={handlePrevious}
         disabled={currentPage <= 1 || disabled}
         aria-label="Previous page"
@@ -132,7 +131,7 @@ export function PaginationGroup({
 
       <Button
         variant="link"
-        className="px-3"
+        size="sm"
         onClick={handleNext}
         disabled={currentPage >= pageCount || disabled}
         aria-label="Next page"
