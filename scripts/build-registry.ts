@@ -52,12 +52,14 @@ async function main() {
 
       const processedFiles = await Promise.all(
         component.files.map(async (file: any) => {
-          const filePath = path.join(PROJECT_ROOT, file.content)
+          // file.path comes from components.json (e.g. "src/components/ui/button.tsx")
+          const filePath = path.join(PROJECT_ROOT, file.path)
           try {
             const content = await fs.readFile(filePath, 'utf-8')
             return {
-              name: file.name,
+              path: file.path, // Keep the path as defined in registry (or transform if needed)
               content: content,
+              type: file.type, // Pass through the type (registry:ui, etc.)
             }
           } catch (err) {
             console.error(
@@ -69,6 +71,7 @@ async function main() {
       )
 
       const componentData = {
+        $schema: 'https://ui.shadcn.com/schema/registry-item.json',
         ...component,
         files: processedFiles,
       }
@@ -86,7 +89,6 @@ async function main() {
         dependencies: component.dependencies,
         registryDependencies: component.registryDependencies,
         type: component.type,
-        files: component.files.map((f: any) => f.name), // Just file names in index
       })
     }
 

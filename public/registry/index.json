@@ -9,10 +9,7 @@
       "input",
       "label"
     ],
-    "type": "components:ui",
-    "files": [
-      "alert-confirmation.tsx"
-    ]
+    "type": "registry:ui"
   },
   {
     "name": "alert-dialog",
@@ -25,10 +22,7 @@
     "registryDependencies": [
       "button"
     ],
-    "type": "components:ui",
-    "files": [
-      "alert-dialog.tsx"
-    ]
+    "type": "registry:ui"
   },
   {
     "name": "button",
@@ -40,10 +34,7 @@
       "tailwind-merge"
     ],
     "registryDependencies": [],
-    "type": "components:ui",
-    "files": [
-      "button.tsx"
-    ]
+    "type": "registry:ui"
   },
   {
     "name": "input",
@@ -53,10 +44,7 @@
       "tailwind-merge"
     ],
     "registryDependencies": [],
-    "type": "components:ui",
-    "files": [
-      "input.tsx"
-    ]
+    "type": "registry:ui"
   },
   {
     "name": "label",
@@ -67,9 +55,6 @@
       "tailwind-merge"
     ],
     "registryDependencies": [],
-    "type": "components:ui",
-    "files": [
-      "label.tsx"
-    ]
+    "type": "registry:ui"
   }
 ]

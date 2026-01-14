@@ -6,11 +6,11 @@
     "registryDependencies": ["alert-dialog", "button", "input", "label"],
     "files": [
       {
-        "name": "alert-confirmation.tsx",
-        "content": "src/components/ui/alert-confirmation.tsx"
+        "path": "src/components/ui/alert-confirmation.tsx",
+        "type": "registry:ui"
       }
     ],
-    "type": "components:ui"
+    "type": "registry:ui"
   },
   "alert-dialog": {
     "name": "alert-dialog",
@@ -20,11 +20,11 @@
     "registryDependencies": ["button"],
     "files": [
       {
-        "name": "alert-dialog.tsx",
-        "content": "src/components/ui/alert-dialog.tsx"
+        "path": "src/components/ui/alert-dialog.tsx",
+        "type": "registry:ui"
       }
     ],
-    "type": "components:ui"
+    "type": "registry:ui"
   },
   "button": {
     "name": "button",
@@ -39,11 +39,11 @@
     "registryDependencies": [],
     "files": [
       {
-        "name": "button.tsx",
-        "content": "src/components/ui/button.tsx"
+        "path": "src/components/ui/button.tsx",
+        "type": "registry:ui"
       }
     ],
-    "type": "components:ui"
+    "type": "registry:ui"
   },
   "input": {
     "name": "input",
@@ -53,11 +53,11 @@
     "registryDependencies": [],
     "files": [
       {
-        "name": "input.tsx",
-        "content": "src/components/ui/input.tsx"
+        "path": "src/components/ui/input.tsx",
+        "type": "registry:ui"
       }
     ],
-    "type": "components:ui"
+    "type": "registry:ui"
   },
   "label": {
     "name": "label",
@@ -67,10 +67,10 @@
     "registryDependencies": [],
     "files": [
       {
-        "name": "label.tsx",
-        "content": "src/components/ui/label.tsx"
+        "path": "src/components/ui/label.tsx",
+        "type": "registry:ui"
       }
     ],
-    "type": "components:ui"
+    "type": "registry:ui"
   }
 }
