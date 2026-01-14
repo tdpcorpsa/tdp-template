@@ -1,0 +1,75 @@
+[
+  {
+    "name": "alert-confirmation",
+    "description": "A high-level alert dialog that requires user confirmation via text input.",
+    "dependencies": [],
+    "registryDependencies": [
+      "alert-dialog",
+      "button",
+      "input",
+      "label"
+    ],
+    "type": "components:ui",
+    "files": [
+      "alert-confirmation.tsx"
+    ]
+  },
+  {
+    "name": "alert-dialog",
+    "description": "A modal dialog that interrupts the user with important content and expects a response.",
+    "dependencies": [
+      "@radix-ui/react-alert-dialog",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "type": "components:ui",
+    "files": [
+      "alert-dialog.tsx"
+    ]
+  },
+  {
+    "name": "button",
+    "description": "Componente de botón con múltiples variantes y tamaños",
+    "dependencies": [
+      "@radix-ui/react-slot",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "registryDependencies": [],
+    "type": "components:ui",
+    "files": [
+      "button.tsx"
+    ]
+  },
+  {
+    "name": "input",
+    "description": "Displays a form input field or a component that looks like an input field.",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge"
+    ],
+    "registryDependencies": [],
+    "type": "components:ui",
+    "files": [
+      "input.tsx"
+    ]
+  },
+  {
+    "name": "label",
+    "description": "Renders an accessible label associated with controls.",
+    "dependencies": [
+      "@radix-ui/react-label",
+      "clsx",
+      "tailwind-merge"
+    ],
+    "registryDependencies": [],
+    "type": "components:ui",
+    "files": [
+      "label.tsx"
+    ]
+  }
+]
