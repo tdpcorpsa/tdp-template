@@ -14,7 +14,7 @@ type ProfileContextType = {
   refetch: () => void
 }
 
-const ProfileContext = createContext<ProfileContextType>({
+export const ProfileContext = createContext<ProfileContextType>({
   profile: undefined,
   isLoading: true,
   error: null,
