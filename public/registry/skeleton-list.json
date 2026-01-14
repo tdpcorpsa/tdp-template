@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-list",
+  "description": "Lista de esqueletos de carga para tablas, listas y tarjetas.",
+  "dependencies": [],
+  "registryDependencies": [
+    "skeleton",
+    "table",
+    "item",
+    "card"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/skeleton-list/skeleton-list.tsx",
+      "content": "import * as React from 'react'\n\nimport { cn } from '@/lib/utils'\nimport { Skeleton } from '@/components/ui/skeleton'\nimport {\n  Table,\n  TableHeader,\n  TableRow,\n  TableHead,\n  TableBody,\n  TableCell,\n} from '@/components/ui/table'\nimport {\n  ItemGroup,\n  Item,\n  ItemMedia,\n  ItemContent,\n  ItemTitle,\n} from '@/components/ui/item'\nimport {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from '@/components/ui/card'\n\ntype SkeletonListVariant = 'table' | 'list' | 'card'\n\ntype SkeletonListProps = {\n  variant?: SkeletonListVariant\n  count?: number\n  columns?: number\n  className?: string\n}\n\nfunction SkeletonList({\n  variant = 'list',\n  count = 10,\n  columns = 4,\n  className,\n}: SkeletonListProps) {\n  if (variant === 'table') {\n    return (\n      <div\n        data-slot=\"skeleton-list\"\n        data-variant=\"table\"\n        className={cn(className)}\n      >\n        <Table>\n          <TableHeader>\n            <TableRow>\n              {Array.from({ length: columns }).map((_, i) => (\n                <TableHead key={i}>\n                  <Skeleton className=\"h-4 w-24\" />\n                </TableHead>\n              ))}\n            </TableRow>\n          </TableHeader>\n          <TableBody>\n            {Array.from({ length: count }).map((_, r) => (\n              <TableRow key={r}>\n                {Array.from({ length: columns }).map((_, c) => (\n                  <TableCell key={c}>\n                    <Skeleton className=\"h-4 w-full\" />\n                  </TableCell>\n                ))}\n              </TableRow>\n            ))}\n          </TableBody>\n        </Table>\n      </div>\n    )\n  }\n\n  if (variant === 'card') {\n    return (\n      <div\n        data-slot=\"skeleton-list\"\n        data-variant=\"card\"\n        className={cn(\n          'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3',\n          className\n        )}\n      >\n        {Array.from({ length: count }).map((_, i) => (\n          <Card key={i}>\n            <CardHeader>\n              <CardTitle>\n                <Skeleton className=\"h-5 w-40\" />\n              </CardTitle>\n              <CardDescription>\n                <Skeleton className=\"mt-2 h-4 w-56\" />\n              </CardDescription>\n            </CardHeader>\n            <CardContent>\n              <div className=\"space-y-3\">\n                <Skeleton className=\"h-4 w-full\" />\n                <Skeleton className=\"h-4 w-5/6\" />\n                <Skeleton className=\"h-4 w-2/3\" />\n              </div>\n            </CardContent>\n            <CardFooter>\n              <Skeleton className=\"h-9 w-24\" />\n            </CardFooter>\n          </Card>\n        ))}\n      </div>\n    )\n  }\n\n  return (\n    <div\n      data-slot=\"skeleton-list\"\n      data-variant=\"list\"\n      className={cn(className)}\n    >\n      <ItemGroup>\n        {Array.from({ length: count }).map((_, i) => (\n          <Item key={i}>\n            <ItemMedia variant=\"icon\">\n              <Skeleton className=\"h-8 w-8\" />\n            </ItemMedia>\n            <ItemContent>\n              <ItemTitle>\n                <Skeleton className=\"h-4 w-40\" />\n              </ItemTitle>\n              <div className=\"space-y-2\">\n                <Skeleton className=\"h-3 w-full\" />\n                <Skeleton className=\"h-3 w-4/5\" />\n              </div>\n            </ItemContent>\n          </Item>\n        ))}\n      </ItemGroup>\n    </div>\n  )\n}\n\nexport { SkeletonList }\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/skeleton-list/index.ts",
+      "content": "export { SkeletonList } from './skeleton-list'\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

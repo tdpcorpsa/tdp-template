@@ -37,6 +37,16 @@
     "type": "registry:ui"
   },
   {
+    "name": "can-access",
+    "description": "Control de acceso basado en permisos.",
+    "dependencies": [],
+    "registryDependencies": [
+      "forbidden",
+      "spinner"
+    ],
+    "type": "registry:ui"
+  },
+  {
     "name": "input",
     "description": "Displays a form input field or a component that looks like an input field.",
     "dependencies": [
@@ -55,6 +65,54 @@
       "tailwind-merge"
     ],
     "registryDependencies": [],
+    "type": "registry:ui"
+  },
+  {
+    "name": "page-header",
+    "description": "Encabezado de página con título, descripción y acciones.",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge"
+    ],
+    "registryDependencies": [
+      "sidebar"
+    ],
+    "type": "registry:ui"
+  },
+  {
+    "name": "pagination-group",
+    "description": "Grupo de paginación con navegación y conteo.",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "button",
+      "button-group"
+    ],
+    "type": "registry:ui"
+  },
+  {
+    "name": "search-input",
+    "description": "Input de búsqueda sincronizado con URL.",
+    "dependencies": [
+      "nuqs",
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "input"
+    ],
+    "type": "registry:ui"
+  },
+  {
+    "name": "skeleton-list",
+    "description": "Lista de esqueletos de carga para tablas, listas y tarjetas.",
+    "dependencies": [],
+    "registryDependencies": [
+      "skeleton",
+      "table",
+      "item",
+      "card"
+    ],
     "type": "registry:ui"
   }
 ]

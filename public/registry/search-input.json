@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-input",
+  "description": "Input de búsqueda sincronizado con URL.",
+  "dependencies": [
+    "nuqs",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "input"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/search-input/search-input.tsx",
+      "content": "'use client'\n\nimport { useQueryState, parseAsString } from 'nuqs'\nimport { Input } from '@/components/ui/input'\nimport { cn } from '@/lib/utils'\nimport { Search, X } from 'lucide-react'\nimport { useEffect, useState } from 'react'\n\ntype SearchInputProps = {\n  param?: string\n  placeholder?: string\n  className?: string\n  autoFocus?: boolean\n  delayMs?: number\n} & React.InputHTMLAttributes<HTMLInputElement>\n\nexport function SearchInput({\n  param = 'q',\n  placeholder = 'Buscar…',\n  className,\n  autoFocus = false,\n  delayMs = 400,\n  ...props\n}: SearchInputProps) {\n  const [value, setValue] = useQueryState(\n    param,\n    parseAsString\n      .withDefault('')\n      .withOptions({ shallow: true, throttleMs: 0, clearOnDefault: true })\n  )\n\n  const [text, setText] = useState(value)\n\n  useEffect(() => {\n    setText(value)\n  }, [value])\n\n  useEffect(() => {\n    const id = setTimeout(() => {\n      if (text !== value) setValue(text)\n    }, delayMs)\n    return () => clearTimeout(id)\n  }, [text, value, setValue, delayMs])\n\n  return (\n    <div className={cn('relative w-full', className)} {...props}>\n      <Search\n        aria-hidden\n        className=\"absolute left-2 top-1/2 -translate-y-1/2 size-4 text-muted-foreground\"\n      />\n      <Input\n        value={text}\n        onChange={(e) => setText(e.target.value)}\n        placeholder={placeholder}\n        autoFocus={autoFocus}\n        className=\"pl-8 pr-8\"\n        aria-label=\"Buscar\"\n      />\n      {text && (\n        <button\n          type=\"button\"\n          onClick={() => setText('')}\n          className=\"absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground\"\n          aria-label=\"Limpiar búsqueda\"\n        >\n          <X className=\"size-4\" />\n        </button>\n      )}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/search-input/generate-supabase-search.ts",
+      "content": "/**\n * Aplica búsqueda de Supabase a la consulta usando AppliedPagination\n */\n\ntype FieldWithReferencedTable = {\n  referencedTable: string\n  fields: string[]\n}\n\nexport function applySupabaseSearch(\n  query: unknown,\n  search?: string,\n  fields?: string[],\n  fieldWithReferencedTable?: FieldWithReferencedTable[]\n) {\n  let q: any = query as any\n  if (!search || !fields) return query\n\n  // Aplicar búsqueda en múltiples campos\n  if (fields?.length) {\n    q = q.or(fields?.map((field) => `${field}.ilike.*${search}*`).join(','))\n  }\n\n  // Aplicar búsqueda en múltiples campos con tabla referenciada\n  if (fieldWithReferencedTable?.length) {\n    for (const item of fieldWithReferencedTable) {\n      const orExpr = item.fields\n        ?.map((field) => `${field}.ilike.*${search}*`)\n        .join(',')\n\n      if (orExpr && orExpr.length) {\n        q = q.or(orExpr, { referencedTable: item.referencedTable })\n      }\n    }\n  }\n\n  return q\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/search-input/index.ts",
+      "content": "'use client'\n\nexport { SearchInput } from './search-input'\nimport { useQueryState, parseAsString } from 'nuqs'\nexport { applySupabaseSearch } from './generate-supabase-search'\n\nexport function useSearchQuery(param = 'q') {\n  return useQueryState(param, parseAsString.withDefault(''))\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

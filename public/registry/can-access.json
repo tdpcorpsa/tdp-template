@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "can-access",
+  "description": "Control de acceso basado en permisos.",
+  "dependencies": [],
+  "registryDependencies": [
+    "forbidden",
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/can-access.tsx",
+      "content": "'use client'\n\nimport usePerms from '@/hooks/auth/use-perms'\nimport Forbidden, { ForbiddenProps } from './forbidden'\nimport { useProfileContext } from '@/providers/profile-provider'\nimport { Spinner } from './spinner'\n\ntype CanAccessProps = {\n  subdomain: string\n  resource: string\n  action: string\n} & ForbiddenProps\n\nexport default function CanAccess({\n  subdomain,\n  resource,\n  action,\n  variant,\n  children,\n}: CanAccessProps) {\n  const { canAccess } = usePerms()\n  const { isLoading } = useProfileContext()\n  const hasAccess = canAccess(subdomain, resource, action)\n\n  if (isLoading)\n    return (\n      <div className=\"flex items-center justify-center\">\n        <Spinner />\n      </div>\n    )\n\n  if (hasAccess) return children\n  return <Forbidden variant={variant}>{children}</Forbidden>\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

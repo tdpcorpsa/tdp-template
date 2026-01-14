@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-group",
+  "description": "Grupo de paginación con navegación y conteo.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "button-group"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/pagination-group/pagination-group.tsx",
+      "content": "'use client'\n\nimport { Button } from '@/components/ui/button'\nimport { ButtonGroup } from '@/components/ui/button-group'\nimport { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'\nimport { usePagination } from './use-pagination'\n\ninterface PaginationGroupProps {\n  total: number\n  pageSize: number\n  disabled?: boolean\n  siblingCount?: number\n  queryKey?: string\n}\n\nexport function PaginationGroup({\n  total,\n  pageSize,\n  disabled,\n  siblingCount = 1,\n  queryKey = 'page',\n}: PaginationGroupProps) {\n  const { page, setPage } = usePagination({ queryKey })\n\n  const pageCount = Math.ceil(total / pageSize)\n  const currentPage = page ?? 1\n\n  // Helper to generate page numbers\n  const generatePagination = () => {\n    // If pageCount is 0 or 1, maybe show just 1 or nothing?\n    // Assuming pageCount >= 1\n    if (pageCount <= 1) return [1]\n\n    const totalNumbers = siblingCount + 5 // siblingCount + first + last + current + 2*dots\n    // simplified logic\n\n    // Case 1: If the number of pages is less than the page numbers we want to show in our\n    // paginationComponent, we return the range [1..totalPageCount]\n    if (totalNumbers >= pageCount) {\n      return range(1, pageCount)\n    }\n\n    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)\n    const rightSiblingIndex = Math.min(currentPage + siblingCount, pageCount)\n\n    const shouldShowLeftDots = leftSiblingIndex > 2\n    const shouldShowRightDots = rightSiblingIndex < pageCount - 2\n\n    const firstPageIndex = 1\n    const lastPageIndex = pageCount\n\n    if (!shouldShowLeftDots && shouldShowRightDots) {\n      const leftItemCount = 3 + 2 * siblingCount\n      const leftRange = range(1, leftItemCount)\n      return [...leftRange, 'dots', pageCount]\n    }\n\n    if (shouldShowLeftDots && !shouldShowRightDots) {\n      const rightItemCount = 3 + 2 * siblingCount\n      const rightRange = range(pageCount - rightItemCount + 1, pageCount)\n      return [firstPageIndex, 'dots', ...rightRange]\n    }\n\n    if (shouldShowLeftDots && shouldShowRightDots) {\n      const middleRange = range(leftSiblingIndex, rightSiblingIndex)\n      return [firstPageIndex, 'dots', ...middleRange, 'dots', lastPageIndex]\n    }\n\n    return range(1, pageCount)\n  }\n\n  const pages = generatePagination()\n\n  const handlePrevious = () => {\n    if (currentPage > 1) {\n      setPage(currentPage - 1)\n    }\n  }\n\n  const handleNext = () => {\n    if (currentPage < pageCount) {\n      setPage(currentPage + 1)\n    }\n  }\n\n  const handlePageChange = (p: number) => {\n    setPage(p)\n  }\n\n  return (\n    <ButtonGroup>\n      <Button\n        variant=\"link\"\n        size=\"sm\"\n        onClick={handlePrevious}\n        disabled={currentPage <= 1 || disabled}\n        aria-label=\"Previous page\"\n      >\n        <ChevronLeft className=\"mr-1 h-4 w-4\" />\n        <span>Anterior</span>\n      </Button>\n\n      {pages.map((p, i) => {\n        if (p === 'dots') {\n          return (\n            <Button\n              key={`dots-${i}`}\n              variant=\"link\"\n              size=\"icon-sm\"\n              disabled\n              className=\"cursor-default\"\n            >\n              <MoreHorizontal className=\"h-4 w-4\" />\n            </Button>\n          )\n        }\n\n        return (\n          <Button\n            key={p}\n            variant={p === currentPage ? 'default' : 'ghost'}\n            size=\"icon-sm\"\n            onClick={() => handlePageChange(p as number)}\n            disabled={disabled}\n            aria-current={p === currentPage ? 'page' : undefined}\n          >\n            {p}\n          </Button>\n        )\n      })}\n\n      <Button\n        variant=\"link\"\n        size=\"sm\"\n        onClick={handleNext}\n        disabled={currentPage >= pageCount || disabled}\n        aria-label=\"Next page\"\n      >\n        <span>Siguiente</span>\n        <ChevronRight className=\"ml-1 h-4 w-4\" />\n      </Button>\n    </ButtonGroup>\n  )\n}\n\nfunction range(start: number, end: number) {\n  const length = end - start + 1\n  return Array.from({ length }, (_, i) => start + i)\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/pagination-group/use-pagination.ts",
+      "content": "import { parseAsInteger, useQueryState } from 'nuqs'\n\nconst DEFAULT_PAGE_SIZE = 20\n\ninterface UsePaginationOptions {\n  queryKey?: string\n  pageSizeQueryKey?: string\n  defaultPage?: number\n  defaultPageSize?: number\n  shallow?: boolean\n  history?: 'push' | 'replace'\n}\n\nexport function usePagination({\n  queryKey = 'page',\n  pageSizeQueryKey = 'pageSize',\n  defaultPage = 1,\n  defaultPageSize = DEFAULT_PAGE_SIZE,\n  shallow = false,\n  history = 'push',\n}: UsePaginationOptions = {}) {\n  const [page, setPage] = useQueryState(\n    queryKey,\n    parseAsInteger.withDefault(defaultPage).withOptions({\n      history,\n      shallow,\n    })\n  )\n  const [pageSize, setPageSize] = useQueryState(\n    pageSizeQueryKey,\n    parseAsInteger.withDefault(defaultPageSize).withOptions({\n      history,\n      shallow,\n    })\n  )\n\n  return {\n    page: page || defaultPage,\n    setPage,\n    pageSize: pageSize || defaultPageSize,\n    setPageSize,\n  }\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/pagination-group/generate-supabase-pagination.ts",
+      "content": "/**\n * Aplica paginación de Supabase a la consulta usando AppliedPagination\n */\nexport function applySupabasePagination(\n  query: unknown,\n  pagination?: {\n    page: number\n    pageSize: number\n  }\n) {\n  let q: any = query as any\n  if (!pagination) return query\n\n  const { page, pageSize } = pagination\n\n  // Validar parámetros\n  if (page < 1 || pageSize < 1) {\n    console.warn('Parámetros de paginación inválidos:', { page, pageSize })\n    return query\n  }\n\n  // Calcular offset\n  const offset = (page - 1) * pageSize\n\n  // Aplicar límites para paginación\n  q = q.range(offset, offset + pageSize - 1)\n\n  return q\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/pagination-group/index.ts",
+      "content": "export * from './pagination-group'\nexport * from './use-pagination'\nexport { applySupabasePagination } from './generate-supabase-pagination'\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

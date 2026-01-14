@@ -215,6 +215,8 @@ pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-templ
 
 - Para crear la documentación sigue el tipo de documentación que se usa en https://ui.shadcn.com/docs
 
+- Si se crea un componente reutilizable tambien se debe de agregar al registro `components.json`
+
 ## Readme
 
 - El readme solo debe de tener un:

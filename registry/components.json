@@ -45,6 +45,19 @@
     ],
     "type": "registry:ui"
   },
+  "can-access": {
+    "name": "can-access",
+    "description": "Control de acceso basado en permisos.",
+    "dependencies": [],
+    "registryDependencies": ["forbidden", "spinner"],
+    "files": [
+      {
+        "path": "src/components/ui/can-access.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
   "input": {
     "name": "input",
     "description": "Displays a form input field or a component that looks like an input field.",
@@ -68,6 +81,82 @@
     "files": [
       {
         "path": "src/components/ui/label.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "page-header": {
+    "name": "page-header",
+    "description": "Encabezado de página con título, descripción y acciones.",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "registryDependencies": ["sidebar"],
+    "files": [
+      {
+        "path": "src/components/ui/page-header.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "pagination-group": {
+    "name": "pagination-group",
+    "description": "Grupo de paginación con navegación y conteo.",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["button", "button-group"],
+    "files": [
+      {
+        "path": "src/components/ui/pagination-group/pagination-group.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/pagination-group/use-pagination.ts",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/pagination-group/generate-supabase-pagination.ts",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/pagination-group/index.ts",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "search-input": {
+    "name": "search-input",
+    "description": "Input de búsqueda sincronizado con URL.",
+    "dependencies": ["nuqs", "lucide-react"],
+    "registryDependencies": ["input"],
+    "files": [
+      {
+        "path": "src/components/ui/search-input/search-input.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/search-input/generate-supabase-search.ts",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/search-input/index.ts",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "skeleton-list": {
+    "name": "skeleton-list",
+    "description": "Lista de esqueletos de carga para tablas, listas y tarjetas.",
+    "dependencies": [],
+    "registryDependencies": ["skeleton", "table", "item", "card"],
+    "files": [
+      {
+        "path": "src/components/ui/skeleton-list/skeleton-list.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/components/ui/skeleton-list/index.ts",
         "type": "registry:ui"
       }
     ],
