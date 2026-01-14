@@ -47,6 +47,26 @@
     "type": "registry:ui"
   },
   {
+    "name": "empty",
+    "description": "Componente para estados vacíos.",
+    "dependencies": [
+      "class-variance-authority"
+    ],
+    "registryDependencies": [],
+    "type": "registry:ui"
+  },
+  {
+    "name": "forbidden",
+    "description": "Componente para mostrar acceso prohibido.",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "empty"
+    ],
+    "type": "registry:ui"
+  },
+  {
     "name": "input",
     "description": "Displays a form input field or a component that looks like an input field.",
     "dependencies": [
@@ -113,6 +133,15 @@
       "item",
       "card"
     ],
+    "type": "registry:ui"
+  },
+  {
+    "name": "spinner",
+    "description": "Indicador de carga simple.",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
     "type": "registry:ui"
   }
 ]

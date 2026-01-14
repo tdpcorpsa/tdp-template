@@ -74,6 +74,32 @@
     ],
     "type": "registry:ui"
   },
+  "empty": {
+    "name": "empty",
+    "description": "Componente para estados vacíos.",
+    "dependencies": ["class-variance-authority"],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "src/components/ui/empty.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "forbidden": {
+    "name": "forbidden",
+    "description": "Componente para mostrar acceso prohibido.",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["empty"],
+    "files": [
+      {
+        "path": "src/components/ui/forbidden.tsx",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
   "input": {
     "name": "input",
     "description": "Displays a form input field or a component that looks like an input field.",
@@ -173,6 +199,19 @@
       },
       {
         "path": "src/components/ui/skeleton-list/index.ts",
+        "type": "registry:ui"
+      }
+    ],
+    "type": "registry:ui"
+  },
+  "spinner": {
+    "name": "spinner",
+    "description": "Indicador de carga simple.",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "src/components/ui/spinner.tsx",
         "type": "registry:ui"
       }
     ],
