@@ -1,4 +1,5 @@
 import { PageHeaderDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function PageHeaderDocs() {
   return (
@@ -11,14 +12,10 @@ export default function PageHeaderDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/page-header.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/page-header.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -31,9 +28,8 @@ export default function PageHeaderDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Básico</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PageHeader } from '@/components/ui/page-header'
+          <CodeBlock
+            code={`import { PageHeader } from '@/components/ui/page-header'
 
 export default function DashboardPage() {
   return (
@@ -45,16 +41,14 @@ export default function DashboardPage() {
       {/* Contenido de la página */}
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Con Acciones</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PageHeader } from '@/components/ui/page-header'
+          <CodeBlock
+            code={`import { PageHeader } from '@/components/ui/page-header'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 
@@ -74,16 +68,14 @@ export default function UsersPage() {
       {/* Lista de usuarios */}
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Sin Sidebar Trigger</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PageHeader } from '@/components/ui/page-header'
+          <CodeBlock
+            code={`import { PageHeader } from '@/components/ui/page-header'
 
 export default function PublicPage() {
   return (
@@ -95,9 +87,8 @@ export default function PublicPage() {
       {/* Contenido */}
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 

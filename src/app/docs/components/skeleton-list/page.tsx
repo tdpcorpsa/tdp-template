@@ -1,4 +1,5 @@
 import { SkeletonListDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function SkeletonListDocs() {
   return (
@@ -10,14 +11,10 @@ export default function SkeletonListDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/skeleton-list.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/skeleton-list.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -30,9 +27,8 @@ export default function SkeletonListDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Lista (Por Defecto)</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { SkeletonList } from '@/components/ui/skeleton-list'
+          <CodeBlock
+            code={`import { SkeletonList } from '@/components/ui/skeleton-list'
 
 export default function LoadingPage() {
   return (
@@ -40,16 +36,14 @@ export default function LoadingPage() {
       <SkeletonList />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Tabla</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { SkeletonList } from '@/components/ui/skeleton-list'
+          <CodeBlock
+            code={`import { SkeletonList } from '@/components/ui/skeleton-list'
 
 export default function LoadingTable() {
   return (
@@ -61,16 +55,14 @@ export default function LoadingTable() {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Tarjetas</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { SkeletonList } from '@/components/ui/skeleton-list'
+          <CodeBlock
+            code={`import { SkeletonList } from '@/components/ui/skeleton-list'
 
 export default function LoadingCards() {
   return (
@@ -82,9 +74,8 @@ export default function LoadingCards() {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 

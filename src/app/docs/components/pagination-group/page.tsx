@@ -1,4 +1,5 @@
 import { PaginationGroupDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function PaginationGroupDocs() {
   return (
@@ -10,14 +11,10 @@ export default function PaginationGroupDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/pagination-group.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/pagination-group.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -30,9 +27,8 @@ export default function PaginationGroupDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Básico</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PaginationGroup } from '@/components/ui/pagination-group'
+          <CodeBlock
+            code={`import { PaginationGroup } from '@/components/ui/pagination-group'
 
 export default function ListPage({ data, total }) {
   return (
@@ -44,16 +40,14 @@ export default function ListPage({ data, total }) {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Personalizado</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PaginationGroup } from '@/components/ui/pagination-group'
+          <CodeBlock
+            code={`import { PaginationGroup } from '@/components/ui/pagination-group'
 
 export default function CustomListPage({ total }) {
   return (
@@ -66,16 +60,14 @@ export default function CustomListPage({ total }) {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Deshabilitado</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { PaginationGroup } from '@/components/ui/pagination-group'
+          <CodeBlock
+            code={`import { PaginationGroup } from '@/components/ui/pagination-group'
 
 export default function LoadingListPage({ total, isLoading }) {
   return (
@@ -87,9 +79,8 @@ export default function LoadingListPage({ total, isLoading }) {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 

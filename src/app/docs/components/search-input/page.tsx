@@ -1,4 +1,5 @@
 import { SearchInputDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function SearchInputDocs() {
   return (
@@ -10,14 +11,10 @@ export default function SearchInputDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/search-input.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/search-input.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -30,9 +27,8 @@ export default function SearchInputDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Básico</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { SearchInput } from '@/components/ui/search-input'
+          <CodeBlock
+            code={`import { SearchInput } from '@/components/ui/search-input'
 
 export default function ListPage() {
   return (
@@ -41,16 +37,14 @@ export default function ListPage() {
       {/* Lista filtrada */}
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Personalizado</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { SearchInput } from '@/components/ui/search-input'
+          <CodeBlock
+            code={`import { SearchInput } from '@/components/ui/search-input'
 
 export default function ProductsPage() {
   return (
@@ -64,9 +58,8 @@ export default function ProductsPage() {
       />
     </div>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { AlertConfirmationDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function AlertConfirmationDocs() {
   return (
@@ -11,14 +12,10 @@ export default function AlertConfirmationDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/alert-confirmation.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/alert-confirmation.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -31,9 +28,8 @@ export default function AlertConfirmationDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Básico</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { AlertConfirmation } from '@/components/ui/alert-confirmation'
+          <CodeBlock
+            code={`import { AlertConfirmation } from '@/components/ui/alert-confirmation'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
@@ -53,16 +49,14 @@ export function BasicExample() {
       />
     </>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Destructivo</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import { AlertConfirmation } from '@/components/ui/alert-confirmation'
+          <CodeBlock
+            code={`import { AlertConfirmation } from '@/components/ui/alert-confirmation'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
@@ -85,9 +79,8 @@ export function DestructiveExample() {
       />
     </>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 

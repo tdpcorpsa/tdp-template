@@ -206,7 +206,8 @@ Las acciones que tienen un formulario com <edit/create> o cualquier otra accion 
 - Los docs de los componentes deben de estar en `/app/docs/components`, y deben de tener un ejemplo de uso y su documentación, de instalación y algunos ejemplos con su demo.
 
 ```bash
-pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/<component-name>.json
+// siempre debe de ser de la rama main
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/<component-name>.json
 
 ```
 

@@ -1,4 +1,5 @@
 import { CanAccessDemo } from './demo'
+import { CodeBlock } from '@/components/ui/code-block'
 
 export default function CanAccessDocs() {
   return (
@@ -11,14 +12,10 @@ export default function CanAccessDocs() {
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Instalación</h2>
-        <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-          <pre className="text-sm text-slate-50">
-            <code>
-              pnpm dlx shadcn@latest add
-              https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/can-access.json
-            </code>
-          </pre>
-        </div>
+        <CodeBlock
+          language="bash"
+          code="pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/can-access.json"
+        />
       </section>
 
       <section className="space-y-4">
@@ -36,9 +33,8 @@ export default function CanAccessDocs() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">Básico</h3>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import CanAccess from '@/components/ui/can-access'
+          <CodeBlock
+            code={`import CanAccess from '@/components/ui/can-access'
 import { Button } from '@/components/ui/button'
 
 export function CreateCampaignButton() {
@@ -51,9 +47,8 @@ export function CreateCampaignButton() {
       <Button>Crear Campaña</Button>
     </CanAccess>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
@@ -64,9 +59,8 @@ export function CreateCampaignButton() {
             En lugar de ocultar o mostrar un error, deshabilita el componente
             hijo.
           </p>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import CanAccess from '@/components/ui/can-access'
+          <CodeBlock
+            code={`import CanAccess from '@/components/ui/can-access'
 import { Button } from '@/components/ui/button'
 
 export function EditCampaignButton() {
@@ -80,9 +74,8 @@ export function EditCampaignButton() {
       <Button>Editar Campaña</Button>
     </CanAccess>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
 
         <div className="space-y-4">
@@ -92,9 +85,8 @@ export function EditCampaignButton() {
           <p className="text-sm text-muted-foreground">
             Muestra una pantalla de error 403 cuando no hay permiso.
           </p>
-          <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
-            <pre className="text-sm text-slate-50">
-              <code>{`import CanAccess from '@/components/ui/can-access'
+          <CodeBlock
+            code={`import CanAccess from '@/components/ui/can-access'
 
 export function ProtectedSection() {
   return (
@@ -110,9 +102,8 @@ export function ProtectedSection() {
         </div>
     </CanAccess>
   )
-}`}</code>
-            </pre>
-          </div>
+}`}
+          />
         </div>
       </section>
 
