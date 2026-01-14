@@ -54,6 +54,22 @@
       {
         "path": "src/components/ui/can-access.tsx",
         "type": "registry:ui"
+      },
+      {
+        "path": "src/hooks/auth/use-perms.ts",
+        "type": "registry:hook"
+      },
+      {
+        "path": "src/providers/profile-provider.tsx",
+        "type": "registry:ui"
+      },
+      {
+        "path": "src/hooks/auth/use-profile.tsx",
+        "type": "registry:hook"
+      },
+      {
+        "path": "src/hooks/auth/use-user.ts",
+        "type": "registry:hook"
       }
     ],
     "type": "registry:ui"
