@@ -6,7 +6,7 @@
     "lucide-react"
   ],
   "registryDependencies": [
-    "empty"
+    "https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/empty.json"
   ],
   "files": [
     {

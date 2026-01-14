@@ -91,7 +91,9 @@
     "name": "forbidden",
     "description": "Componente para mostrar acceso prohibido.",
     "dependencies": ["lucide-react"],
-    "registryDependencies": ["empty"],
+    "registryDependencies": [
+      "https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/empty.json"
+    ],
     "files": [
       {
         "path": "src/components/ui/forbidden.tsx",
