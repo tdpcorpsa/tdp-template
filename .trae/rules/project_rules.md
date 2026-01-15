@@ -202,9 +202,20 @@ Las acciones que tienen un formulario com <edit/create> o cualquier otra accion 
 
 ## Componentes
 
-- Cuando se crea un componente reutilizable, se debe de agregar la forma de uso en `/app/demo`, solo y unicamente de los componentes reutilizables que esten dentro de `../ui`.
-- los demos deben de enlazarse a la pagina principal de `/app/demo`
-- las features no deben de estar dentro de `demo`.
+- Cuando se crea un componente reutilizable, se debe de agregar la forma de uso el `/app/docs/components`, solo y unicamente de los componentes reutilizables que esten dentro de `../ui`, y hayan sido creadas por el equipo de desarrollo.
+- Los docs de los componentes deben de estar en `/app/docs/components`, y deben de tener un ejemplo de uso y su documentación, de instalación y algunos ejemplos con su demo.
+
+```bash
+// siempre debe de ser de la rama main
+pnpm dlx shadcn@latest add https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/main/public/registry/<component-name>.json
+
+```
+
+- las features no deben de estar dentro de `docs`
+
+- Para crear la documentación sigue el tipo de documentación que se usa en https://ui.shadcn.com/docs
+
+- Si se crea un componente reutilizable tambien se debe de agregar al registro `components.json`
 
 ## Readme
 

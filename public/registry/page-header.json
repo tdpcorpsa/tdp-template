@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header",
+  "description": "Encabezado de página con título, descripción y acciones.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "separator",
+    "sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/page-header.tsx",
+      "content": "'use client'\n\nimport * as React from 'react'\nimport { cn } from '@/lib/utils'\nimport { SidebarTrigger } from './sidebar'\n\ntype PageHeaderProps = {\n  title: string\n  description?: string\n  actions?: React.ReactNode\n  className?: string\n  withSidebar?: boolean\n}\n\nexport function PageHeader({\n  title,\n  description,\n  actions,\n  className,\n  withSidebar = true,\n}: PageHeaderProps) {\n  return (\n    <header className={cn('p-4', className)}>\n      <div className=\"container mx-auto flex items-center justify-between\">\n        <div className=\"flex items-center space-x-2\">\n          {withSidebar && <SidebarTrigger />}\n          <div>\n            <h1 className=\"text-lg font-bold\">{title}</h1>\n            {description && (\n              <p className=\"text-sm text-muted-foreground\">{description}</p>\n            )}\n          </div>\n        </div>\n        {actions}\n      </div>\n    </header>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

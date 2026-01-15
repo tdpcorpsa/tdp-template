@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "can-access",
+  "description": "Control de acceso basado en permisos.",
+  "dependencies": [],
+  "registryDependencies": [
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/forbidden.tsx",
+      "content": "'use client'\n\nimport { CircleOff } from 'lucide-react'\nimport {\n  Empty,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from './empty'\nimport { ReactNode, cloneElement, isValidElement } from 'react'\n\nconst ForbiddenPage = () => (\n  <Empty>\n    <EmptyHeader>\n      <EmptyMedia>\n        <CircleOff className=\"text-muted-foreground\" />\n      </EmptyMedia>\n      <EmptyTitle>403 - Prohibido</EmptyTitle>\n      <EmptyDescription>\n        No tienes permisos suficientes para acceder.\n      </EmptyDescription>\n    </EmptyHeader>\n  </Empty>\n)\n\nexport const ForbiddenDisabled = ({ children }: { children?: ReactNode }) => {\n  if (!children) return null\n  if (!isValidElement(children)) return null\n\n  return cloneElement<any>(children, {\n    disabled: true,\n    onClick: undefined,\n    onChange: undefined,\n    'aria-disabled': true,\n    tabIndex: -1,\n  })\n}\n\nexport type ForbiddenProps = {\n  variant?: 'page' | 'disabled'\n  children?: ReactNode\n}\n\nexport default function Forbidden({\n  variant = 'page',\n  children,\n}: ForbiddenProps) {\n  return (\n    <>\n      {variant === 'page' && <ForbiddenPage />}\n      {variant === 'disabled' && (\n        <ForbiddenDisabled>{children}</ForbiddenDisabled>\n      )}\n    </>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/ui/can-access.tsx",
+      "content": "'use client'\n\nimport usePerms from '@/hooks/auth/use-perms'\nimport Forbidden, { ForbiddenProps } from './forbidden'\nimport { useProfileContext } from '@/providers/profile-provider'\nimport { Spinner } from './spinner'\n\ntype CanAccessProps = {\n  subdomain: string\n  resource: string\n  action: string\n} & ForbiddenProps\n\nexport default function CanAccess({\n  subdomain,\n  resource,\n  action,\n  variant,\n  children,\n}: CanAccessProps) {\n  const { canAccess } = usePerms()\n  const { isLoading } = useProfileContext()\n  const hasAccess = canAccess(subdomain, resource, action)\n\n  if (isLoading)\n    return (\n      <div className=\"flex items-center justify-center\">\n        <Spinner />\n      </div>\n    )\n\n  if (hasAccess) return children\n  return <Forbidden variant={variant}>{children}</Forbidden>\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/hooks/auth/use-perms.ts",
+      "content": "'use client'\nimport { useProfileContext } from '@/providers/profile-provider'\n\n/**\n * Hook para gestionar la verificación de permisos por aplicación.\n */\nexport default function usePerms() {\n  const { profile } = useProfileContext()\n\n  /**\n   * Verifica si el usuario tiene acceso a una acción específica sobre un recurso en un subdominio.\n   */\n  const canAccess = (subdomain: string, resource: string, action: string) => {\n    if (profile?.is_superuser) return true\n\n    const appPerm = profile?.roles\n      ?.flatMap((role) => role?.app_perms || [])\n      ?.find((item) => item?.subdomain === subdomain)\n    return (appPerm as any)?.[resource]?.[action] === true\n  }\n\n  /**\n   * Verifica si la aplicación debe mostrarse (si el usuario tiene algún permiso en ella).\n   */\n  const showApp = (subdomain: string) => {\n    if (profile?.is_superuser) return true\n\n    return profile?.roles\n      ?.flatMap((role) => role?.app_perms || [])\n      ?.some((item) => item?.subdomain === subdomain)\n  }\n\n  return {\n    canAccess,\n    showApp,\n  }\n}\n",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/providers/profile-provider.tsx",
+      "content": "'use client'\n\nimport { Suspense, createContext, useContext } from 'react'\nimport useProfile from '@/hooks/auth/use-profile'\nimport { Spinner } from '@/components/ui/spinner'\n\ntype UseProfileReturn = ReturnType<typeof useProfile>\ntype ProfileData = UseProfileReturn['data']\n\ntype ProfileContextType = {\n  profile: ProfileData | undefined\n  isLoading: boolean\n  error: Error | null\n  refetch: () => void\n}\n\nexport const ProfileContext = createContext<ProfileContextType>({\n  profile: undefined,\n  isLoading: true,\n  error: null,\n  refetch: () => {},\n})\n\nexport const useProfileContext = () => {\n  const context = useContext(ProfileContext)\n  if (!context) {\n    throw new Error('useProfileContext must be used within a ProfileProvider')\n  }\n  return context\n}\n\nexport default function ProfileProvider({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  const { data: profile, isLoading, error, refetch } = useProfile()\n\n  return (\n    <ProfileContext.Provider\n      value={{\n        profile,\n        isLoading,\n        error: error as Error | null,\n        refetch,\n      }}\n    >\n      <Suspense\n        fallback={\n          <div className=\"flex justify-center items-center h-screen\">\n            <Spinner />\n          </div>\n        }\n      >\n        {children}\n      </Suspense>\n    </ProfileContext.Provider>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/hooks/auth/use-profile.tsx",
+      "content": "'use client'\n\nimport { supabase } from '@/lib/supabase/client'\nimport { Tables } from '@/types/supabase.types'\nimport { useQuery } from '@tanstack/react-query'\nimport useUser from './use-user'\n\ntype UserView = Tables<'users_view'> & {\n  roles: {\n    name: Tables<'roles'>['name']\n    description?: Tables<'roles'>['description']\n    app_perms?: Tables<'role_app_perms'> &\n      {\n        app_id: Tables<'apps'>['id']\n        subdomain: Tables<'apps'>['subdomain']\n        perms: Tables<'role_app_perms'>['perms']\n      }[]\n  }[]\n}\n\nexport default function useProfile() {\n  const { data: user } = useUser()\n  const query = useQuery({\n    queryKey: ['profile'],\n    queryFn: async (): Promise<UserView> => {\n      if (!user?.id) {\n        throw new Error('User not found')\n      }\n      const { data, error } = await supabase\n        .from('users_view')\n        .select('*')\n        .eq('id', user?.id)\n        .single()\n\n      if (error) throw error\n\n      return data as UserView\n    },\n  })\n  return query\n}\n",
+      "type": "registry:hook"
+    },
+    {
+      "path": "src/hooks/auth/use-user.ts",
+      "content": "'use client'\n\nimport { supabase } from '@/lib/supabase/client'\nimport { useQuery } from '@tanstack/react-query'\n\nexport default function useUser() {\n  const userQuery = useQuery({\n    queryKey: ['user'],\n    queryFn: async () => {\n      const { data } = await supabase.auth.getSession()\n      return data.session?.user\n    },\n  })\n\n  return userQuery\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:ui"
+}
