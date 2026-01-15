@@ -12,79 +12,12 @@
     "type": "registry:ui"
   },
   {
-    "name": "alert-dialog",
-    "description": "A modal dialog that interrupts the user with important content and expects a response.",
-    "dependencies": [
-      "@radix-ui/react-alert-dialog",
-      "clsx",
-      "tailwind-merge"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "type": "registry:ui"
-  },
-  {
-    "name": "button",
-    "description": "Componente de botón con múltiples variantes y tamaños",
-    "dependencies": [
-      "@radix-ui/react-slot",
-      "class-variance-authority",
-      "clsx",
-      "tailwind-merge"
-    ],
-    "registryDependencies": [],
-    "type": "registry:ui"
-  },
-  {
     "name": "can-access",
     "description": "Control de acceso basado en permisos.",
     "dependencies": [],
     "registryDependencies": [
-      "forbidden",
       "spinner"
     ],
-    "type": "registry:ui"
-  },
-  {
-    "name": "empty",
-    "description": "Componente para estados vacíos.",
-    "dependencies": [
-      "class-variance-authority"
-    ],
-    "registryDependencies": [],
-    "type": "registry:ui"
-  },
-  {
-    "name": "forbidden",
-    "description": "Componente para mostrar acceso prohibido.",
-    "dependencies": [
-      "lucide-react"
-    ],
-    "registryDependencies": [
-      "https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/empty.json"
-    ],
-    "type": "registry:ui"
-  },
-  {
-    "name": "input",
-    "description": "Displays a form input field or a component that looks like an input field.",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge"
-    ],
-    "registryDependencies": [],
-    "type": "registry:ui"
-  },
-  {
-    "name": "label",
-    "description": "Renders an accessible label associated with controls.",
-    "dependencies": [
-      "@radix-ui/react-label",
-      "clsx",
-      "tailwind-merge"
-    ],
-    "registryDependencies": [],
     "type": "registry:ui"
   },
   {
@@ -95,6 +28,7 @@
       "tailwind-merge"
     ],
     "registryDependencies": [
+      "separator",
       "sidebar"
     ],
     "type": "registry:ui"
@@ -133,15 +67,6 @@
       "item",
       "card"
     ],
-    "type": "registry:ui"
-  },
-  {
-    "name": "spinner",
-    "description": "Indicador de carga simple.",
-    "dependencies": [
-      "lucide-react"
-    ],
-    "registryDependencies": [],
     "type": "registry:ui"
   }
 ]

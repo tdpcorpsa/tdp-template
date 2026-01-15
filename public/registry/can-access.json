@@ -4,10 +4,14 @@
   "description": "Control de acceso basado en permisos.",
   "dependencies": [],
   "registryDependencies": [
-    "forbidden",
     "spinner"
   ],
   "files": [
+    {
+      "path": "src/components/ui/forbidden.tsx",
+      "content": "'use client'\n\nimport { CircleOff } from 'lucide-react'\nimport {\n  Empty,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from './empty'\nimport { ReactNode, cloneElement, isValidElement } from 'react'\n\nconst ForbiddenPage = () => (\n  <Empty>\n    <EmptyHeader>\n      <EmptyMedia>\n        <CircleOff className=\"text-muted-foreground\" />\n      </EmptyMedia>\n      <EmptyTitle>403 - Prohibido</EmptyTitle>\n      <EmptyDescription>\n        No tienes permisos suficientes para acceder.\n      </EmptyDescription>\n    </EmptyHeader>\n  </Empty>\n)\n\nexport const ForbiddenDisabled = ({ children }: { children?: ReactNode }) => {\n  if (!children) return null\n  if (!isValidElement(children)) return null\n\n  return cloneElement<any>(children, {\n    disabled: true,\n    onClick: undefined,\n    onChange: undefined,\n    'aria-disabled': true,\n    tabIndex: -1,\n  })\n}\n\nexport type ForbiddenProps = {\n  variant?: 'page' | 'disabled'\n  children?: ReactNode\n}\n\nexport default function Forbidden({\n  variant = 'page',\n  children,\n}: ForbiddenProps) {\n  return (\n    <>\n      {variant === 'page' && <ForbiddenPage />}\n      {variant === 'disabled' && (\n        <ForbiddenDisabled>{children}</ForbiddenDisabled>\n      )}\n    </>\n  )\n}\n",
+      "type": "registry:ui"
+    },
     {
       "path": "src/components/ui/can-access.tsx",
       "content": "'use client'\n\nimport usePerms from '@/hooks/auth/use-perms'\nimport Forbidden, { ForbiddenProps } from './forbidden'\nimport { useProfileContext } from '@/providers/profile-provider'\nimport { Spinner } from './spinner'\n\ntype CanAccessProps = {\n  subdomain: string\n  resource: string\n  action: string\n} & ForbiddenProps\n\nexport default function CanAccess({\n  subdomain,\n  resource,\n  action,\n  variant,\n  children,\n}: CanAccessProps) {\n  const { canAccess } = usePerms()\n  const { isLoading } = useProfileContext()\n  const hasAccess = canAccess(subdomain, resource, action)\n\n  if (isLoading)\n    return (\n      <div className=\"flex items-center justify-center\">\n        <Spinner />\n      </div>\n    )\n\n  if (hasAccess) return children\n  return <Forbidden variant={variant}>{children}</Forbidden>\n}\n",

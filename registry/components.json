@@ -12,45 +12,16 @@
     ],
     "type": "registry:ui"
   },
-  "alert-dialog": {
-    "name": "alert-dialog",
-    "description": "A modal dialog that interrupts the user with important content and expects a response.",
-    "dependencies": ["@radix-ui/react-alert-dialog", "clsx", "tailwind-merge"],
-    "devDependencies": [],
-    "registryDependencies": ["button"],
-    "files": [
-      {
-        "path": "src/components/ui/alert-dialog.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
-  "button": {
-    "name": "button",
-    "description": "Componente de botón con múltiples variantes y tamaños",
-    "dependencies": [
-      "@radix-ui/react-slot",
-      "class-variance-authority",
-      "clsx",
-      "tailwind-merge"
-    ],
-    "devDependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "src/components/ui/button.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
   "can-access": {
     "name": "can-access",
     "description": "Control de acceso basado en permisos.",
     "dependencies": [],
-    "registryDependencies": ["forbidden", "spinner"],
+    "registryDependencies": ["spinner"],
     "files": [
+      {
+        "path": "src/components/ui/forbidden.tsx",
+        "type": "registry:ui"
+      },
       {
         "path": "src/components/ui/can-access.tsx",
         "type": "registry:ui"
@@ -74,67 +45,11 @@
     ],
     "type": "registry:ui"
   },
-  "empty": {
-    "name": "empty",
-    "description": "Componente para estados vacíos.",
-    "dependencies": ["class-variance-authority"],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "src/components/ui/empty.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
-  "forbidden": {
-    "name": "forbidden",
-    "description": "Componente para mostrar acceso prohibido.",
-    "dependencies": ["lucide-react"],
-    "registryDependencies": [
-      "https://raw.githubusercontent.com/tdpcorpsa/tdp-template/refs/heads/register-components/public/registry/empty.json"
-    ],
-    "files": [
-      {
-        "path": "src/components/ui/forbidden.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
-  "input": {
-    "name": "input",
-    "description": "Displays a form input field or a component that looks like an input field.",
-    "dependencies": ["clsx", "tailwind-merge"],
-    "devDependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "src/components/ui/input.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
-  "label": {
-    "name": "label",
-    "description": "Renders an accessible label associated with controls.",
-    "dependencies": ["@radix-ui/react-label", "clsx", "tailwind-merge"],
-    "devDependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "src/components/ui/label.tsx",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
   "page-header": {
     "name": "page-header",
     "description": "Encabezado de página con título, descripción y acciones.",
     "dependencies": ["clsx", "tailwind-merge"],
-    "registryDependencies": ["sidebar"],
+    "registryDependencies": ["separator", "sidebar"],
     "files": [
       {
         "path": "src/components/ui/page-header.tsx",
@@ -201,19 +116,6 @@
       },
       {
         "path": "src/components/ui/skeleton-list/index.ts",
-        "type": "registry:ui"
-      }
-    ],
-    "type": "registry:ui"
-  },
-  "spinner": {
-    "name": "spinner",
-    "description": "Indicador de carga simple.",
-    "dependencies": ["lucide-react"],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "src/components/ui/spinner.tsx",
         "type": "registry:ui"
       }
     ],
