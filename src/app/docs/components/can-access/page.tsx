@@ -80,6 +80,32 @@ export function EditCampaignButton() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">
+            Ocultar (variant="hidden")
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Oculta completamente el contenido si no tiene permisos.
+          </p>
+          <CodeBlock
+            code={`import CanAccess from '@/components/ui/can-access'
+import { Button } from '@/components/ui/button'
+
+export function DeleteCampaignButton() {
+  return (
+    <CanAccess
+      subdomain="marketing"
+      resource="campaigns"
+      action="delete"
+      variant="hidden"
+    >
+      <Button variant="destructive">Eliminar Campaña</Button>
+    </CanAccess>
+  )
+}`}
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-xl font-medium">
             Página Prohibida (variant="page" - Default)
           </h3>
           <p className="text-sm text-muted-foreground">

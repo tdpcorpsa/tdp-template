@@ -64,6 +64,19 @@ export function CanAccessDemo() {
         </div>
 
         <div className="flex flex-col gap-2">
+            <h4 className="text-sm font-medium">Permiso Denegado - Variant: hidden</h4>
+            <p className="text-xs text-muted-foreground">El botón de abajo no se renderiza:</p>
+            <CanAccess
+                subdomain="marketing"
+                resource="campaigns"
+                action="update"
+                variant="hidden"
+            >
+                <Button variant="destructive">Botón Oculto</Button>
+            </CanAccess>
+        </div>
+
+        <div className="flex flex-col gap-2">
             <h4 className="text-sm font-medium">Permiso Denegado - Variant: page (default)</h4>
             <div className="border p-4 rounded-md">
                 <CanAccess
