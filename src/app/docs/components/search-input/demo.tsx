@@ -9,23 +9,26 @@ function DemoContent() {
   return (
     <div className="flex flex-col gap-8 p-4 border rounded-lg bg-background">
       <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-medium">Básico (param: 'q')</h4>
+        <h4 className="text-sm font-medium">Básico (param: &apos;q&apos;)</h4>
         <div className="w-full max-w-sm">
-            <SearchInput placeholder="Escribe algo..." />
+          <SearchInput placeholder="Escribe algo..." />
         </div>
         <p className="text-sm text-muted-foreground">
-            Valor en URL (?q=): <span className="font-mono text-foreground">{q || '(vacío)'}</span>
+          Valor en URL (?q=):{' '}
+          <span className="font-mono text-foreground">{q || '(vacío)'}</span>
         </p>
       </div>
 
       <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-medium">Custom (param: 'search', delay: 1000ms)</h4>
+        <h4 className="text-sm font-medium">
+          Custom (param: &apos;search&apos;, delay: 1000ms)
+        </h4>
         <div className="w-full max-w-sm">
-            <SearchInput
-                param="search"
-                placeholder="Búsqueda lenta..."
-                delayMs={1000}
-            />
+          <SearchInput
+            param="search"
+            placeholder="Búsqueda lenta..."
+            delayMs={1000}
+          />
         </div>
       </div>
     </div>
@@ -33,9 +36,9 @@ function DemoContent() {
 }
 
 export function SearchInputDemo() {
-    return (
-        <Suspense fallback={<div>Cargando demo...</div>}>
-            <DemoContent />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<div>Cargando demo...</div>}>
+      <DemoContent />
+    </Suspense>
+  )
 }

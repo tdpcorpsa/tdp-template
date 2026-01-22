@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "page-header",
   "description": "Encabezado de página con título, descripción y acciones.",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge"
-  ],
-  "registryDependencies": [
-    "separator",
-    "sidebar"
-  ],
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["separator", "sidebar"],
   "files": [
     {
       "path": "src/components/ui/page-header.tsx",

@@ -53,7 +53,7 @@ export function CreateCampaignButton() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">
-            Deshabilitar (variant="disabled")
+            Deshabilitar (variant=&quot;disabled&quot;)
           </h3>
           <p className="text-sm text-muted-foreground">
             En lugar de ocultar o mostrar un error, deshabilita el componente
@@ -80,7 +80,7 @@ export function EditCampaignButton() {
 
         <div className="space-y-4">
           <h3 className="text-xl font-medium">
-            Página Prohibida (variant="page" - Default)
+            Página Prohibida (variant=&quot;page&quot; - Default)
           </h3>
           <p className="text-sm text-muted-foreground">
             Muestra una pantalla de error 403 cuando no hay permiso.
@@ -138,7 +138,9 @@ export function ProtectedSection() {
               </tr>
               <tr>
                 <td className="p-4 font-mono">variant</td>
-                <td className="p-4 font-mono">'page' | 'disabled'</td>
+                <td className="p-4 font-mono">
+                  &apos;page&apos; | &apos;disabled&apos;
+                </td>
                 <td className="p-4">
                   Variante del comportamiento cuando no hay acceso.
                 </td>

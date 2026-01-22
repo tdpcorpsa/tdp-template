@@ -79,7 +79,7 @@ export default function ProductsPage() {
                 <td className="p-4 font-mono">param</td>
                 <td className="p-4 font-mono">string</td>
                 <td className="p-4">
-                  Nombre del parámetro en la URL (default: 'q')
+                  Nombre del parámetro en la URL (default: &apos;q&apos;)
                 </td>
               </tr>
               <tr>

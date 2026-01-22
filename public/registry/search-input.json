@@ -2,13 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "search-input",
   "description": "Input de búsqueda sincronizado con URL.",
-  "dependencies": [
-    "nuqs",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "input"
-  ],
+  "dependencies": ["nuqs", "lucide-react"],
+  "registryDependencies": ["input"],
   "files": [
     {
       "path": "src/components/ui/search-input/search-input.tsx",

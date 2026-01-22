@@ -93,8 +93,12 @@ export default function LoadingCards() {
             <tbody className="divide-y">
               <tr>
                 <td className="p-4 font-mono">variant</td>
-                <td className="p-4 font-mono">'table' | 'list' | 'card'</td>
-                <td className="p-4">Tipo de visualización (default: 'list')</td>
+                <td className="p-4 font-mono">
+                  &apos;table&apos; | &apos;list&apos; | &apos;card&apos;
+                </td>
+                <td className="p-4">
+                  Tipo de visualización (default: &apos;list&apos;)
+                </td>
               </tr>
               <tr>
                 <td className="p-4 font-mono">count</td>
@@ -107,7 +111,7 @@ export default function LoadingCards() {
                 <td className="p-4 font-mono">columns</td>
                 <td className="p-4 font-mono">number</td>
                 <td className="p-4">
-                  Número de columnas (solo para variant='table')
+                  Número de columnas (solo para variant=&apos;table&apos;)
                 </td>
               </tr>
               <tr>

@@ -7,26 +7,21 @@ function DemoContent() {
   return (
     <div className="flex flex-col gap-8 p-4 border rounded-lg bg-background">
       <div className="flex flex-col gap-2">
-        <h4 className="text-sm font-medium">Interactivo (sincronizado con URL)</h4>
+        <h4 className="text-sm font-medium">
+          Interactivo (sincronizado con URL)
+        </h4>
         <div className="flex justify-center">
-            <PaginationGroup
-                total={100}
-                pageSize={10}
-            />
+          <PaginationGroup total={100} pageSize={10} />
         </div>
         <p className="text-xs text-muted-foreground text-center">
-            Observa cómo cambia el parámetro ?page= en la URL.
+          Observa cómo cambia el parámetro ?page= en la URL.
         </p>
       </div>
 
       <div className="flex flex-col gap-2">
         <h4 className="text-sm font-medium">Deshabilitado</h4>
         <div className="flex justify-center">
-            <PaginationGroup
-                total={50}
-                pageSize={10}
-                disabled
-            />
+          <PaginationGroup total={50} pageSize={10} disabled />
         </div>
       </div>
     </div>
@@ -34,9 +29,9 @@ function DemoContent() {
 }
 
 export function PaginationGroupDemo() {
-    return (
-        <Suspense fallback={<div>Cargando demo...</div>}>
-            <DemoContent />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<div>Cargando demo...</div>}>
+      <DemoContent />
+    </Suspense>
+  )
 }

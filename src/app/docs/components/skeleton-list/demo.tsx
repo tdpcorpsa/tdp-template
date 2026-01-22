@@ -8,21 +8,25 @@ export function SkeletonListDemo() {
       <div className="flex flex-col gap-2">
         <h4 className="text-sm font-medium">Lista (default)</h4>
         <div className="border rounded-md p-4">
-            <SkeletonList count={3} />
+          <SkeletonList count={3} />
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
         <h4 className="text-sm font-medium">Tabla (3 columnas)</h4>
         <div className="border rounded-md p-4">
-            <SkeletonList variant="table" count={3} columns={3} />
+          <SkeletonList variant="table" count={3} columns={3} />
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
         <h4 className="text-sm font-medium">Cards (Grid)</h4>
         <div className="border rounded-md p-4">
-            <SkeletonList variant="card" count={3} className="grid-cols-1 sm:grid-cols-3" />
+          <SkeletonList
+            variant="card"
+            count={3}
+            className="grid-cols-1 sm:grid-cols-3"
+          />
         </div>
       </div>
     </div>

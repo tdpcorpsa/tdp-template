@@ -3,12 +3,7 @@
   "name": "skeleton-list",
   "description": "Lista de esqueletos de carga para tablas, listas y tarjetas.",
   "dependencies": [],
-  "registryDependencies": [
-    "skeleton",
-    "table",
-    "item",
-    "card"
-  ],
+  "registryDependencies": ["skeleton", "table", "item", "card"],
   "files": [
     {
       "path": "src/components/ui/skeleton-list/skeleton-list.tsx",
