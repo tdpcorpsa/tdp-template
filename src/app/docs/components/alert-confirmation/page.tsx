@@ -130,7 +130,9 @@ export function DestructiveExample() {
               </tr>
               <tr>
                 <td className="p-4 font-mono">variant</td>
-                <td className="p-4 font-mono">'default' | 'destructive'</td>
+                <td className="p-4 font-mono">
+                  &apos;default&apos; | &apos;destructive&apos;
+                </td>
                 <td className="p-4">Estilo del botón de confirmación</td>
               </tr>
             </tbody>

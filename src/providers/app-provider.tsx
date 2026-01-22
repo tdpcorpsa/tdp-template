@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext } from 'react'
 import { useGetAppBySubdomain } from '@/hooks/apps/use-get-app-by-subdomain'
 import { Tables } from '@/types/supabase.types'
 
@@ -18,6 +18,24 @@ const AppContext = createContext<AppContextType>({
   error: null,
 })
 
+const getSubdomainFromHostname = (hostname: string, domain?: string) => {
+  if (domain && hostname.endsWith(domain)) {
+    const part = hostname.replace(`.${domain}`, '')
+    if (part !== hostname) {
+      return part
+    }
+  }
+
+  if (hostname.includes('localhost')) {
+    const parts = hostname.split('.')
+    if (parts.length > 1 && parts[parts.length - 1] === 'localhost') {
+      return parts[0]
+    }
+  }
+
+  return ''
+}
+
 export const useAppContext = () => {
   const context = useContext(AppContext)
   if (!context) {
@@ -31,43 +49,21 @@ export default function AppProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [subdomain, setSubdomain] = useState<string | null>(null)
+  const subdomain =
+    typeof window === 'undefined'
+      ? ''
+      : getSubdomainFromHostname(
+          window.location.hostname,
+          process.env.NEXT_PUBLIC_DOMAIN
+        )
 
-  useEffect(() => {
-    const hostname = window.location.hostname
-    const domain = process.env.NEXT_PUBLIC_DOMAIN
-
-    let sub = ''
-
-    if (domain && hostname.endsWith(domain)) {
-      // e.g. app.domain.com -> app
-      const part = hostname.replace(`.${domain}`, '')
-      if (part !== hostname) {
-        sub = part
-      }
-    } else if (hostname.includes('localhost')) {
-      // e.g. app.localhost -> app
-      const parts = hostname.split('.')
-      if (parts.length > 1 && parts[parts.length - 1] === 'localhost') {
-        sub = parts[0]
-      }
-    }
-
-    if (sub) {
-      setSubdomain(sub)
-    } else {
-      // If no subdomain found, we might want to set loading to false?
-      setSubdomain('')
-    }
-  }, [])
-
-  const { data: app, isLoading, error } = useGetAppBySubdomain(subdomain || '')
+  const { data: app, isLoading, error } = useGetAppBySubdomain(subdomain)
 
   return (
     <AppContext.Provider
       value={{
         currentApp: app ?? null,
-        isLoading: isLoading && !!subdomain,
+        isLoading: isLoading && subdomain.length > 0,
         error: error as Error | null,
       }}
     >

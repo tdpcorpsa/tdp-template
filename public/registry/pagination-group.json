@@ -2,13 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pagination-group",
   "description": "Grupo de paginación con navegación y conteo.",
-  "dependencies": [
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "button",
-    "button-group"
-  ],
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["button", "button-group"],
   "files": [
     {
       "path": "src/components/ui/pagination-group/pagination-group.tsx",

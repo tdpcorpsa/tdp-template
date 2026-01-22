@@ -31,5 +31,5 @@ pnpm dev
 
 Lista de módulos y sus permisos (subdomain:recurso:accion):
 
-- *No hay módulos definidos en la plantilla base.*
+- _No hay módulos definidos en la plantilla base._
 - Ejemplo: `marketing:campaigns:create`

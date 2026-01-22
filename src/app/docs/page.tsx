@@ -8,11 +8,12 @@ export default function DocsPage() {
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold tracking-tight">Introducción</h2>
         <p className="leading-7">
-          Esta plantilla está diseñada para estandarizar el desarrollo de aplicaciones en TDP Corp.
-          Utiliza Next.js, shadcn/ui, y Supabase.
+          Esta plantilla está diseñada para estandarizar el desarrollo de
+          aplicaciones en TDP Corp. Utiliza Next.js, shadcn/ui, y Supabase.
         </p>
         <p className="leading-7">
-          Navega por el menú lateral para ver la documentación de los componentes reutilizables.
+          Navega por el menú lateral para ver la documentación de los
+          componentes reutilizables.
         </p>
       </div>
     </div>

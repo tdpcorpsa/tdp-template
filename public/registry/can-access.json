@@ -3,9 +3,7 @@
   "name": "can-access",
   "description": "Control de acceso basado en permisos.",
   "dependencies": [],
-  "registryDependencies": [
-    "spinner"
-  ],
+  "registryDependencies": ["spinner"],
   "files": [
     {
       "path": "src/components/ui/forbidden.tsx",

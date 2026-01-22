@@ -110,7 +110,7 @@ export default function LoadingListPage({ total, isLoading }) {
                 <td className="p-4 font-mono">queryKey</td>
                 <td className="p-4 font-mono">string</td>
                 <td className="p-4">
-                  Clave del parámetro en la URL (default: 'page')
+                  Clave del parámetro en la URL (default: &apos;page&apos;)
                 </td>
               </tr>
               <tr>

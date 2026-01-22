@@ -3,70 +3,42 @@
     "name": "alert-confirmation",
     "description": "A high-level alert dialog that requires user confirmation via text input.",
     "dependencies": [],
-    "registryDependencies": [
-      "alert-dialog",
-      "button",
-      "input",
-      "label"
-    ],
+    "registryDependencies": ["alert-dialog", "button", "input", "label"],
     "type": "registry:ui"
   },
   {
     "name": "can-access",
     "description": "Control de acceso basado en permisos.",
     "dependencies": [],
-    "registryDependencies": [
-      "spinner"
-    ],
+    "registryDependencies": ["spinner"],
     "type": "registry:ui"
   },
   {
     "name": "page-header",
     "description": "Encabezado de página con título, descripción y acciones.",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge"
-    ],
-    "registryDependencies": [
-      "separator",
-      "sidebar"
-    ],
+    "dependencies": ["clsx", "tailwind-merge"],
+    "registryDependencies": ["separator", "sidebar"],
     "type": "registry:ui"
   },
   {
     "name": "pagination-group",
     "description": "Grupo de paginación con navegación y conteo.",
-    "dependencies": [
-      "lucide-react"
-    ],
-    "registryDependencies": [
-      "button",
-      "button-group"
-    ],
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["button", "button-group"],
     "type": "registry:ui"
   },
   {
     "name": "search-input",
     "description": "Input de búsqueda sincronizado con URL.",
-    "dependencies": [
-      "nuqs",
-      "lucide-react"
-    ],
-    "registryDependencies": [
-      "input"
-    ],
+    "dependencies": ["nuqs", "lucide-react"],
+    "registryDependencies": ["input"],
     "type": "registry:ui"
   },
   {
     "name": "skeleton-list",
     "description": "Lista de esqueletos de carga para tablas, listas y tarjetas.",
     "dependencies": [],
-    "registryDependencies": [
-      "skeleton",
-      "table",
-      "item",
-      "card"
-    ],
+    "registryDependencies": ["skeleton", "table", "item", "card"],
     "type": "registry:ui"
   }
 ]

@@ -3,12 +3,7 @@
   "name": "alert-confirmation",
   "description": "A high-level alert dialog that requires user confirmation via text input.",
   "dependencies": [],
-  "registryDependencies": [
-    "alert-dialog",
-    "button",
-    "input",
-    "label"
-  ],
+  "registryDependencies": ["alert-dialog", "button", "input", "label"],
   "files": [
     {
       "path": "src/components/ui/alert-confirmation.tsx",
