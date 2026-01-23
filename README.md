@@ -4,6 +4,7 @@ Plantilla oficial de TDP Corp basada en Next.js, TypeScript y Supabase.
 Implementa estándares corporativos, shadcn/ui, React Query y Zustand.
 Incluye autenticación, manejo de permisos y componentes reutilizables.
 Diseñada para garantizar consistencia y escalabilidad en los proyectos.
+Puedes ver la documentación aquí: https://tdp-template.vercel.app/docs
 
 ## Variables de Entorno
 
